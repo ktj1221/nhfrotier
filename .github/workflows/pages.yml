@@ -1,0 +1,64 @@
+# main = 운영(/), dev = 개발(/dev/) 을 하나의 Pages 사이트로 배포한다.
+# 어느 쪽에 푸시하든 두 브랜치를 모두 다시 읽어 올리므로 한쪽만 낡지 않는다.
+#
+# 사전 조건: Settings > Pages > Source 가 "GitHub Actions" 여야 한다.
+name: Deploy Pages
+
+on:
+  push:
+    branches: [main, dev]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 배포는 겹치지 않게 한 번에 하나만. 진행 중인 배포는 취소하지 않는다.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: main 체크아웃 (사이트 루트)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: _site
+
+      - name: dev 체크아웃 (/dev 경로)
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+          path: _site/dev
+
+      # 저장소 메타데이터는 웹에 올릴 이유가 없다. 나머지는 현재 사이트와 동일하게 유지한다.
+      - name: git 메타데이터 제거
+        run: rm -rf _site/.git _site/.github _site/dev/.git _site/dev/.github
+
+      - name: 배포 구조 확인
+        run: |
+          echo "── 사이트 루트(main) ──"
+          ls _site
+          echo "── /dev (dev) ──"
+          ls _site/dev
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Pages 배포
+        id: deployment
+        uses: actions/deploy-pages@v4

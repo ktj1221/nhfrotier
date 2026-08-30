@@ -1,0 +1,3 @@
+# mockup/claude_test is its own git repository (nested .git) - never track it here,
+# it was previously committed as a broken submodule reference and broke GitHub Pages checkout.
+mockup/claude_test/

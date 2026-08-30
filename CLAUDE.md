@@ -186,6 +186,7 @@ node scripts/sync-dev.mjs   # 훅 활성화 확인
 | **특정 기능(FR)의 동작·범위·구현상태 확인** | `개발문서/기능명세/00_INDEX.md` | FR별 상세 명세, FR ↔ US ↔ 화면 ↔ API 추적, 구현 상태 |
 | **기능명세 md 수정** | `개발문서/기능명세/00_CHANGELOG.md` | 변경 이력 기록 방법. 수정과 동시에 행을 추가할 것 |
 | **화면 구조·상태 모델 확인** | `개발문서/03_IA_FUNCTION_SPEC.md` | IA, 화면 구조, 상태 모델 |
+| **문서 허브 화면(디자인) 수정** | `reference/README.md` | 디자인 정본은 `reference/doc-hub.html`이다. `프로젝트문서.html`은 빌드 산출물이므로 직접 고치지 말 것 |
 | **테스트 작성 / 기능 완료 점검** | `개발문서/07_QA_SECURITY_OPERATIONS.md` | 기능·보안·AI 품질 테스트 항목 |
 | **"이거 왜 이렇게 되어 있지?" 의문이 들 때** | `개발문서/08_DECISIONS_OPEN_ISSUES.md` | 결정사항과 미결사항. 미결이면 임의로 정하지 말고 질문할 것 |
 

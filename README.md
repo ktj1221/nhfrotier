@@ -22,7 +22,11 @@ node scripts/install-hooks.mjs      # 클론 후 1회 — 자동 빌드 훅 활�
 node scripts/build-docs-site.mjs    # 수동 빌드
 ```
 
-Node.js 18 이상이면 되고 설치할 패키지는 없습니다. 디자인 토큰은 `design-system/tokens/`에서 가져옵니다.
+Node.js 18 이상이면 되고 설치할 패키지는 없습니다.
+
+화면의 CSS와 렌더 로직은 [reference/doc-hub.html](reference/doc-hub.html)이 정본이고,
+빌드는 그 안의 `DATA:BEGIN` ~ `DATA:END` 구간만 마크다운에서 생성해 갈아끼웁니다.
+디자인을 고치려면 `프로젝트문서.html`이 아니라 그 파일을 여세요 — 자세한 규칙은 [reference/README.md](reference/README.md) 참고.
 
 ## 🌿 팀 작업 흐름
 

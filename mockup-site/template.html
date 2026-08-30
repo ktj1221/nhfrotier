@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NH뚝딱협업스튜디오 - Template</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: #4f46e5; text-decoration: none; }
+  a:hover { color: #4338ca; }
+  .nav-link { padding: 8px 12px; border-radius: 8px; font-size: 14px; font-weight: 500; color: #64748b; }
+  .nav-link:hover { background: #f1f5f9; color: #0f172a; }
+  .nav-link.active { color: #4f46e5; background: #eef2ff; }
+  .cat-chip { padding:6px 14px;border-radius:999px;font-size:13px;font-weight:500;border:1px solid #e2e8f0;color:#64748b; }
+  .cat-chip.active { background:#4f46e5;border-color:#4f46e5;color:#fff; }
+  .tpl-card:hover { border-color: #c7d2fe; box-shadow: 0 4px 12px rgba(79,70,229,0.08); }
+</style>
+</head>
+<body>
+<div style="width:1440px;min-height:1000px;background:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;">
+
+  <header style="height:56px;background:#ffffff;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:28px;padding:0 32px;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="width:28px;height:28px;background:#4f46e5;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      </div>
+      <span style="font-weight:700;color:#0f172a;font-size:14px;">NH뚝딱협업스튜디오</span>
+    </div>
+    <nav style="display:flex;align-items:center;gap:4px;">
+      <a class="nav-link" href="main.html">대시보드</a>
+      <a class="nav-link" href="projects.html">프로젝트</a>
+      <span class="nav-link active">Template</span>
+      <a class="nav-link" href="my-work.html">내 작업</a>
+    </nav>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:16px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:#4f46e5;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;">김</div>
+        <span style="font-size:13px;font-weight:500;color:#334155;">김민준</span>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width:1376px;margin:0 auto;padding:32px;">
+    <div style="margin-bottom:20px;">
+      <h1 style="font-size:22px;font-weight:700;color:#0f172a;margin:0 0 4px;">Template</h1>
+      <p style="font-size:14px;color:#64748b;margin:0;">자주 쓰는 화면 구성을 저장해두고, 새 프로젝트를 시작할 때 바로 불러오세요.</p>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+      <span class="cat-chip active">전체</span>
+      <span class="cat-chip">대시보드</span>
+      <span class="cat-chip">폼/온보딩</span>
+      <span class="cat-chip">프로모션</span>
+      <span class="cat-chip">문서</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+
+      <div class="tpl-card" style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;transition:all .15s;">
+        <div style="height:110px;background:#eef2ff;padding:14px;display:flex;flex-direction:column;gap:6px;">
+          <div style="height:14px;width:50%;background:#c7d2fe;border-radius:4px;"></div>
+          <div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">
+            <div style="background:#fff;border-radius:4px;"></div>
+            <div style="background:#fff;border-radius:4px;"></div>
+            <div style="background:#fff;border-radius:4px;"></div>
+          </div>
+        </div>
+        <div style="padding:14px;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+            <span style="font-size:10px;font-weight:600;color:#4f46e5;background:#eef2ff;padding:2px 7px;border-radius:999px;">대시보드</span>
+          </div>
+          <h3 style="font-size:14px;font-weight:700;color:#0f172a;margin:0 0 4px;">NH 대시보드 공통형</h3>
+          <p style="font-size:11.5px;color:#94a3b8;margin:0 0 10px;">고객 요약 카드 + 최근 활동 리스트 구성</p>
+          <button style="width:100%;padding:7px;background:#4f46e5;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;">이 Template로 시작</button>
+        </div>
+      </div>
+
+      <div class="tpl-card" style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;transition:all .15s;">
+        <div style="height:110px;background:#f0fdf4;padding:14px;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;">
+          <div style="width:60%;height:10px;background:#bbf7d0;border-radius:4px;"></div>
+          <div style="width:60%;height:18px;background:#fff;border:1px solid #bbf7d0;border-radius:6px;"></div>
+          <div style="width:40%;height:18px;background:#16a34a;border-radius:6px;"></div>
+        </div>
+        <div style="padding:14px;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+            <span style="font-size:10px;font-weight:600;color:#15803d;background:#f0fdf4;padding:2px 7px;border-radius:999px;">폼/온보딩</span>
+          </div>
+          <h3 style="font-size:14px;font-weight:700;color:#0f172a;margin:0 0 4px;">간편 온보딩 폼</h3>
+          <p style="font-size:11.5px;color:#94a3b8;margin:0 0 10px;">단계형 입력 + 진행률 표시</p>
+          <button style="width:100%;padding:7px;background:#4f46e5;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;">이 Template로 시작</button>
+        </div>
+      </div>
+
+      <div class="tpl-card" style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;transition:all .15s;">
+        <div style="height:110px;background:#fef3c7;padding:14px;display:flex;align-items:center;justify-content:center;">
+          <div style="width:80%;height:60%;background:#f59e0b;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+            <div style="width:50%;height:10px;background:rgba(255,255,255,.8);border-radius:4px;"></div>
+          </div>
+        </div>
+        <div style="padding:14px;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+            <span style="font-size:10px;font-weight:600;color:#b45309;background:#fffbeb;padding:2px 7px;border-radius:999px;">프로모션</span>
+          </div>
+          <h3 style="font-size:14px;font-weight:700;color:#0f172a;margin:0 0 4px;">이벤트 배너형</h3>
+          <p style="font-size:11.5px;color:#94a3b8;margin:0 0 10px;">헤드라인 + CTA 버튼 중심 배너</p>
+          <button style="width:100%;padding:7px;background:#4f46e5;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;">이 Template로 시작</button>
+        </div>
+      </div>
+
+      <div class="tpl-card" style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;transition:all .15s;">
+        <div style="height:110px;background:#f1f5f9;padding:14px;display:flex;flex-direction:column;gap:6px;">
+          <div style="height:8px;width:70%;background:#cbd5e1;border-radius:4px;"></div>
+          <div style="height:8px;width:90%;background:#e2e8f0;border-radius:4px;"></div>
+          <div style="height:8px;width:60%;background:#e2e8f0;border-radius:4px;"></div>
+          <div style="height:8px;width:80%;background:#e2e8f0;border-radius:4px;margin-top:6px;"></div>
+        </div>
+        <div style="padding:14px;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+            <span style="font-size:10px;font-weight:600;color:#475569;background:#f1f5f9;padding:2px 7px;border-radius:999px;">문서</span>
+          </div>
+          <h3 style="font-size:14px;font-weight:700;color:#0f172a;margin:0 0 4px;">안내문 리플렛형</h3>
+          <p style="font-size:11.5px;color:#94a3b8;margin:0 0 10px;">지점 비치용 인쇄물 레이아웃</p>
+          <button style="width:100%;padding:7px;background:#4f46e5;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;">이 Template로 시작</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>

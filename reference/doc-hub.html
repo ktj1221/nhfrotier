@@ -572,12 +572,13 @@ function navRender(){
   g0.appendChild(h0);
   var b0 = el("div","grp-b");
   FEATURES.forEach(function(f){
-    var d = DOCMAP[f.id];
-    var b = el("button","nl" + (S.view==="doc" && S.doc===f.id ? " on" : "") + (roleDim(d) ? " dim" : ""));
+    /* f.id 는 기능 식별자(FR-01), f.doc 는 문서 id(FR-01_인증권한)다. 라우팅 키는 문서 id 다. */
+    var d = DOCMAP[f.doc];
+    var b = el("button","nl" + (S.view==="doc" && S.doc===f.doc ? " on" : "") + (roleDim(d) ? " dim" : ""));
     b.innerHTML = '<span class="frid">'+f.id+'</span><span class="nm">'+esc(f.name)+'</span>'
       + (d && d.changed ? '<span class="dot" title="이번 커밋에서 수정됨"></span>' : '')
       + '<span class="trio"><i class="'+f.stages.design+'"></i><i class="'+f.stages.proto+'"></i><i class="'+f.stages.ops+'"></i></span>';
-    b.onclick = function(){ go("#"+f.id) };
+    b.onclick = function(){ go("#"+f.doc) };
     b0.appendChild(b);
   });
   g0.appendChild(b0); nav.appendChild(g0);
@@ -724,7 +725,7 @@ function coverRender(){
       return '<span class="st '+v+'" data-tip="'+STAGE_LABEL[k]+' — '+STATE_LABEL[v]+'"><span class="bar"></span><span class="nm">'+STAGE_LABEL[k]+'</span></span>';
     }).join("") + '</div>';
     c.innerHTML = top + body + rail;
-    c.onclick = function(){ go("#"+f.id) };
+    c.onclick = function(){ go("#"+f.doc) };
     cards.appendChild(c);
   });
   inner.appendChild(cards);

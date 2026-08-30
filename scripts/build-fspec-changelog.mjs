@@ -124,8 +124,8 @@ function fillPendingRows(rows, staged, author) {
 
   for (const row of rows) {
     if (!isPending(row) || !staged.has(row.file)) continue;
-    if (!row.date) row.date = date;
-    if (!row.author) row.author = author;
+    if (isUnset(row.date)) row.date = date;
+    if (isUnset(row.author)) row.author = author;
     if (isUnset(row.type)) row.type = TYPE_BY_STATUS[staged.get(row.file)] ?? '수정';
   }
 }
@@ -139,7 +139,7 @@ function fillPendingRows(rows, staged, author) {
  */
 function backfillCommits(rows, staged) {
   for (const row of rows) {
-    if (!isPending(row) || staged.has(row.file) || !row.file || !row.date) continue;
+    if (!isPending(row) || staged.has(row.file) || !row.file || isUnset(row.date)) continue;
 
     const history = readCommitHistory(posix.join(SPEC_DIR, row.file), ROOT);
     const commit = history.filter((entry) => entry.isoDate.slice(0, 10) >= row.date).pop();
@@ -152,7 +152,7 @@ function backfillCommits(rows, staged) {
 
 /** 미확정 행이 맨 위, 그 아래는 최신순. 동률은 문자열로 끊어 출력을 결정적으로 만든다. */
 function sortRows(rows) {
-  const key = (row) => [row.date || '9999-99-99', row.file, row.commit, row.content];
+  const key = (row) => [isUnset(row.date) ? '9999-99-99' : row.date, row.file, row.commit, row.content];
 
   rows.sort((left, right) => {
     const [leftDate, ...leftRest] = key(left);

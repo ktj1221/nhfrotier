@@ -1,0 +1,15 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "title": "S01 Dashboard", "x": 0, "y": 0, "w": 1440, "h": 1120 },
+    { "file": "ProjectList.dc.html", "title": "S02 Project List", "x": 1560, "y": 0, "w": 1440, "h": 760 },
+    { "file": "Workspace.dc.html", "title": "S03 Project Workspace", "x": 0, "y": 1300, "w": 1440, "h": 900 },
+    { "file": "AIChat.dc.html", "title": "S04 AI Chat", "x": 1560, "y": 1300, "w": 1440, "h": 900 },
+    { "file": "ResultReview.dc.html", "title": "S05 Result/Review", "x": 3120, "y": 1300, "w": 1440, "h": 900 },
+    { "file": "Version.dc.html", "title": "S06 Version", "x": 0, "y": 2380, "w": 1440, "h": 900 },
+    { "file": "History.dc.html", "title": "S07 History", "x": 1560, "y": 2380, "w": 1440, "h": 900 }
+  ],
+  "annotations": [
+    { "id": "note-flow", "x": 0, "y": -90, "w": 500, "text": "NH뚝딱협업스튜디오 — 개발문서 기준 목업 (S01~S07)\n대시보드/프로젝트 목록 → 프로젝트 워크스페이스 흐름" }
+  ],
+  "launch": { "view": "canvas" }
+}

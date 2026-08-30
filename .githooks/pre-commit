@@ -18,6 +18,13 @@ if ! command -v node >/dev/null 2>&1; then
   exit 1
 fi
 
+if ! node scripts/build-fspec-changelog.mjs; then
+  echo "pre-commit: 기능명세 변경 이력 갱신 실패 — 커밋을 중단합니다." >&2
+  exit 1
+fi
+
+git add "개발문서/기능명세/00_CHANGELOG.md"
+
 if ! node scripts/build-docs-site.mjs; then
   echo "pre-commit: 문서 페이지 생성 실패 — 커밋을 중단합니다." >&2
   exit 1

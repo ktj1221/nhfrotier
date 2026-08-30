@@ -1,0 +1,4 @@
+# 같은 사람이 여러 이름으로 커밋한 것을 하나로 묶는다.
+# 형식: 대표이름 <대표메일> 커밋이름 <커밋메일>
+# git log --format=%aN / %aE 와 git check-mailmap 이 이 파일을 따른다.
+김태정 <ktj1221@nonghyup.com> ktj1221 <ktj1221@nonghyup.com>

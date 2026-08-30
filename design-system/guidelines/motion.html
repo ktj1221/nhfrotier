@@ -1,0 +1,16 @@
+<!-- @dsCard group="Motion" viewport="700x180" name="Duration & easing" subtitle="Short and decelerating. Press is a 0.97 scale, never a colour flash alone." -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"><style>
+body{margin:0;padding:20px;background:var(--surface-card);font-family:var(--font-sans);color:var(--text-body)}
+.ramp{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:0;border-radius:var(--r-md);overflow:hidden}
+.sw{height:76px;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;gap:1px}
+.sw b{font-size:11px;font-weight:700;letter-spacing:.02em}
+.sw i{font-size:10px;font-style:normal;opacity:.72;font-variant-numeric:tabular-nums}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:10px}
+.tile{border-radius:var(--r-sm);padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-height:64px;justify-content:flex-end}
+.tile b{font-size:12px;font-weight:700}.tile i{font-size:10px;font-style:normal;opacity:.7;font-variant-numeric:tabular-nums}
+.k{font-size:10px;color:var(--text-subtle);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.stack{display:flex;flex-direction:column;gap:14px}
+.line{display:flex;align-items:baseline;gap:14px}
+.line .k{min-width:118px;flex:none}
+@keyframes slide{0%,15%{transform:translateX(0)}55%,100%{transform:translateX(150px)}}</style></head><body><div class="stack">
+<div class="line"><span class="k" style="min-width:100px">--dur-fast</span><span class="k" style="min-width:56px">140ms</span><span style="flex:1;height:8px;background:var(--ink-100);border-radius:99px;position:relative;overflow:hidden"><span style="position:absolute;top:0;left:0;width:60px;height:8px;border-radius:99px;background:var(--teal-400);animation:slide 560ms var(--ease-standard) infinite"></span></span><span class="k" style="min-width:100px">누름·색 변화</span></div><div class="line"><span class="k" style="min-width:100px">--dur-base</span><span class="k" style="min-width:56px">220ms</span><span style="flex:1;height:8px;background:var(--ink-100);border-radius:99px;position:relative;overflow:hidden"><span style="position:absolute;top:0;left:0;width:60px;height:8px;border-radius:99px;background:var(--teal-400);animation:slide 880ms var(--ease-standard) infinite"></span></span><span class="k" style="min-width:100px">토글·페이드</span></div><div class="line"><span class="k" style="min-width:100px">--dur-slow</span><span class="k" style="min-width:56px">320ms</span><span style="flex:1;height:8px;background:var(--ink-100);border-radius:99px;position:relative;overflow:hidden"><span style="position:absolute;top:0;left:0;width:60px;height:8px;border-radius:99px;background:var(--teal-400);animation:slide 1280ms var(--ease-decel) infinite"></span></span><span class="k" style="min-width:100px">화면 전환</span></div><div class="line"><span class="k" style="min-width:100px">--dur-sheet</span><span class="k" style="min-width:56px">380ms</span><span style="flex:1;height:8px;background:var(--ink-100);border-radius:99px;position:relative;overflow:hidden"><span style="position:absolute;top:0;left:0;width:60px;height:8px;border-radius:99px;background:var(--teal-400);animation:slide 1520ms var(--ease-decel) infinite"></span></span><span class="k" style="min-width:100px">바텀시트 진입</span></div></div></body></html>

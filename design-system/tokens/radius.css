@@ -1,0 +1,6 @@
+:root{
+--r-xs:6px;--r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:20px;--r-2xl:24px;--r-pill:999px;
+/* Aliases by role — the house shape language is generously rounded */
+--r-card:20px;--r-tile:16px;--r-button:14px;--r-chip:999px;--r-field:12px;
+--r-sheet:24px;--r-icon-tile:14px;--r-avatar:999px;
+}

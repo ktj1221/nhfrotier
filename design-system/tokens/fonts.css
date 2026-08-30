@@ -1,0 +1,6 @@
+/* Naru Bank — webfonts.
+   Pretendard (SIL OFL) is the house UI face: the de-facto Korean product sans.
+   SUBSTITUTION: no proprietary brand font was supplied. Pretendard Variable is
+   loaded from the jsDelivr CDN. Swap the src for a self-hosted binary in prod. */
+@font-face{font-family:"Pretendard Variable";font-weight:45 920;font-style:normal;font-display:swap;src:url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2") format("woff2-variations")}
+/* Numeric display face for balances — same family, locked to tabular figures via --font-numeric */

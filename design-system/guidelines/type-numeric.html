@@ -1,0 +1,21 @@
+<!-- @dsCard group="Type" viewport="700x200" name="Numeric & Amounts" subtitle="Tabular figures always. Unit suffix drops to 72% and one weight step." -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"><style>
+body{margin:0;padding:20px;background:var(--surface-card);font-family:var(--font-sans);color:var(--text-body)}
+.ramp{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:0;border-radius:var(--r-md);overflow:hidden}
+.sw{height:76px;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;gap:1px}
+.sw b{font-size:11px;font-weight:700;letter-spacing:.02em}
+.sw i{font-size:10px;font-style:normal;opacity:.72;font-variant-numeric:tabular-nums}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:10px}
+.tile{border-radius:var(--r-sm);padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-height:64px;justify-content:flex-end}
+.tile b{font-size:12px;font-weight:700}.tile i{font-size:10px;font-style:normal;opacity:.7;font-variant-numeric:tabular-nums}
+.k{font-size:10px;color:var(--text-subtle);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.stack{display:flex;flex-direction:column;gap:14px}
+.line{display:flex;align-items:baseline;gap:14px}
+.line .k{min-width:118px;flex:none}
+.n{font-variant-numeric:tabular-nums;letter-spacing:var(--ls-numeric);font-weight:700;color:var(--text-strong)}.u{font-size:.72em;font-weight:600}</style></head><body><div class="stack">
+<div class="line"><span class="k">amount-hero · 32</span><span class="n" style="font-size:32px">119,651<span class="u">P</span></span></div>
+<div class="line"><span class="k">amount · 24</span><span class="n" style="font-size:24px">1,175,776<span class="u">원</span></span></div>
+<div class="line"><span class="k">amount-sm · 18</span><span class="n" style="font-size:18px">265,000<span class="u">원</span></span></div>
+<div class="line"><span class="k">rate</span><span class="n" style="font-size:24px">최고 <span style="color:var(--teal-600)">4.15%</span> · 최저 2.45%</span></div>
+<div class="line"><span class="k">masked · 숨김</span><span class="n" style="font-size:24px">•••••<span class="u">원</span></span></div>
+</div></body></html>

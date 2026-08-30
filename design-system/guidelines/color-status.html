@@ -1,0 +1,16 @@
+<!-- @dsCard group="Colors" viewport="700x120" name="Semantic · Status" subtitle="Feedback pairs. The soft background always carries the matching ink." -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"><style>
+body{margin:0;padding:20px;background:var(--surface-card);font-family:var(--font-sans);color:var(--text-body)}
+.ramp{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:0;border-radius:var(--r-md);overflow:hidden}
+.sw{height:76px;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;gap:1px}
+.sw b{font-size:11px;font-weight:700;letter-spacing:.02em}
+.sw i{font-size:10px;font-style:normal;opacity:.72;font-variant-numeric:tabular-nums}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:10px}
+.tile{border-radius:var(--r-sm);padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-height:64px;justify-content:flex-end}
+.tile b{font-size:12px;font-weight:700}.tile i{font-size:10px;font-style:normal;opacity:.7;font-variant-numeric:tabular-nums}
+.k{font-size:10px;color:var(--text-subtle);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.stack{display:flex;flex-direction:column;gap:14px}
+.line{display:flex;align-items:baseline;gap:14px}
+.line .k{min-width:118px;flex:none}
+</style></head><body><div class="tiles" style="grid-template-columns:repeat(4,1fr)">
+<div class="tile" style="background:#E4F5EC;color:#0F9D58"><b>Success · 완료</b><i>#0F9D58</i><i>bg #E4F5EC</i></div><div class="tile" style="background:#FDF3DC;color:#EFA300"><b>Warning · 점검중</b><i>#EFA300</i><i>bg #FDF3DC</i></div><div class="tile" style="background:#FDE9E9;color:#DB3D40"><b>Danger · 실패</b><i>#DB3D40</i><i>bg #FDE9E9</i></div><div class="tile" style="background:#E5EDFE;color:#2B6CF6"><b>Info · 안내</b><i>#2B6CF6</i><i>bg #E5EDFE</i></div></div></body></html>

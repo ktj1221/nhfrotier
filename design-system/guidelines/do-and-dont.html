@@ -1,0 +1,26 @@
+<!-- @dsCard group="Brand" viewport="700x320" name="Do / Don't" subtitle="The six mistakes an agent makes most often." -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"><style>
+body{margin:0;padding:20px;background:var(--surface-card);font-family:var(--font-sans);color:var(--text-body)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row{display:contents}
+.cell{border-radius:var(--r-md);padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.ok{background:var(--success-bg)}.no{background:var(--danger-bg)}
+.tag{font-size:10px;font-weight:800;letter-spacing:.06em}
+.ok .tag{color:var(--success)}.no .tag{color:var(--danger)}
+.ex{font-size:13px;font-weight:600;color:var(--text-strong)}
+.why{font-size:11px;color:var(--text-muted)}
+code{font-size:11px;background:rgba(14,20,20,.06);padding:1px 4px;border-radius:4px}
+</style></head><body><div class="grid">
+<div class="cell ok"><span class="tag">DO</span><span class="ex"><code>background: var(--action-primary)</code></span><span class="why">토큰만 사용</span></div>
+<div class="cell no"><span class="tag">DON'T</span><span class="ex"><code>background: #0B8478</code></span><span class="why">하드코딩된 hex</span></div>
+<div class="cell ok"><span class="tag">DO</span><span class="ex">선택된 탭 = 먹색 / 주요 버튼 = 청록</span><span class="why">청록은 '동작', 먹색은 '선택'</span></div>
+<div class="cell no"><span class="tag">DON'T</span><span class="ex">선택된 탭을 청록으로</span><span class="why">액션 색의 의미가 흐려짐</span></div>
+<div class="cell ok"><span class="tag">DO</span><span class="ex">입금 <span style="color:var(--money-up)">+320,000원</span> · 출금 <span style="color:var(--money-down)">-150,000원</span></span><span class="why">상승 빨강 · 하락 파랑</span></div>
+<div class="cell no"><span class="tag">DON'T</span><span class="ex">입금 <span style="color:var(--money-down)">+320,000원</span></span><span class="why">미국식 반대 컨벤션</span></div>
+<div class="cell ok"><span class="tag">DO</span><span class="ex">계좌번호를 복사했어요</span><span class="why">해요체</span></div>
+<div class="cell no"><span class="tag">DON'T</span><span class="ex">계좌번호가 복사되었습니다 🎉</span><span class="why">합니다체 · 이모지</span></div>
+<div class="cell ok"><span class="tag">DO</span><span class="ex">&lt;AmountText value={1175776}/&gt;</span><span class="why">고정폭 숫자 · 단위 축소</span></div>
+<div class="cell no"><span class="tag">DON'T</span><span class="ex">&lt;span&gt;1175776원&lt;/span&gt;</span><span class="why">그룹핑·정렬 깨짐</span></div>
+<div class="cell ok"><span class="tag">DO</span><span class="ex">모달은 &lt;Sheet&gt; 하단 시트</span><span class="why">모바일 표준</span></div>
+<div class="cell no"><span class="tag">DON'T</span><span class="ex">화면 중앙 다이얼로그</span><span class="why">이 시스템엔 없음</span></div>
+</div></body></html>

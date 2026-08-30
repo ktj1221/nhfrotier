@@ -1,0 +1,16 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Layout constants" subtitle="Fixed measurements for the phone canvas — never improvise these." -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"><style>
+body{margin:0;padding:20px;background:var(--surface-card);font-family:var(--font-sans);color:var(--text-body)}
+.ramp{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:0;border-radius:var(--r-md);overflow:hidden}
+.sw{height:76px;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;gap:1px}
+.sw b{font-size:11px;font-weight:700;letter-spacing:.02em}
+.sw i{font-size:10px;font-style:normal;opacity:.72;font-variant-numeric:tabular-nums}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:10px}
+.tile{border-radius:var(--r-sm);padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-height:64px;justify-content:flex-end}
+.tile b{font-size:12px;font-weight:700}.tile i{font-size:10px;font-style:normal;opacity:.7;font-variant-numeric:tabular-nums}
+.k{font-size:10px;color:var(--text-subtle);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.stack{display:flex;flex-direction:column;gap:14px}
+.line{display:flex;align-items:baseline;gap:14px}
+.line .k{min-width:118px;flex:none}
+</style></head><body><div class="tiles" style="grid-template-columns:repeat(4,1fr)">
+<div class="tile" style="background:var(--ink-50)"><b style="font-size:16px;color:var(--text-strong)">20px</b><i>--gutter</i><i>화면 좌우 여백</i></div><div class="tile" style="background:var(--ink-50)"><b style="font-size:16px;color:var(--text-strong)">20px</b><i>--card-pad</i><i>카드 내부 패딩</i></div><div class="tile" style="background:var(--ink-50)"><b style="font-size:16px;color:var(--text-strong)">12px</b><i>--card-gap</i><i>카드 사이 간격</i></div><div class="tile" style="background:var(--ink-50)"><b style="font-size:16px;color:var(--text-strong)">28px</b><i>--section-gap</i><i>섹션 사이 간격</i></div><div class="tile" style="background:var(--ink-50)"><b style="font-size:16px;color:var(--text-strong)">56px</b><i>--row-h</i><i>리스트 행 높이</i></div><div class="tile" style="background:var(--ink-50)"><b style="font-size:16px;color:var(--text-strong)">44px</b><i>--tap-min</i><i>최소 터치 영역</i></div><div class="tile" style="background:var(--ink-50)"><b style="font-size:16px;color:var(--text-strong)">56px</b><i>--appbar-h</i><i>상단 바</i></div><div class="tile" style="background:var(--ink-50)"><b style="font-size:16px;color:var(--text-strong)">64px</b><i>--bottomnav-h</i><i>하단 탭</i></div></div></body></html>

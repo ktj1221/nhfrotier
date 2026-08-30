@@ -1,0 +1,18 @@
+<!-- @dsCard group="Type" viewport="700x170" name="큰글 mode" subtitle="One class scales the whole ramp. Layout must survive it — no fixed text heights." -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css"><style>
+body{margin:0;padding:20px;background:var(--surface-card);font-family:var(--font-sans);color:var(--text-body)}
+.ramp{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:0;border-radius:var(--r-md);overflow:hidden}
+.sw{height:76px;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;gap:1px}
+.sw b{font-size:11px;font-weight:700;letter-spacing:.02em}
+.sw i{font-size:10px;font-style:normal;opacity:.72;font-variant-numeric:tabular-nums}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:10px}
+.tile{border-radius:var(--r-sm);padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-height:64px;justify-content:flex-end}
+.tile b{font-size:12px;font-weight:700}.tile i{font-size:10px;font-style:normal;opacity:.7;font-variant-numeric:tabular-nums}
+.k{font-size:10px;color:var(--text-subtle);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.stack{display:flex;flex-direction:column;gap:14px}
+.line{display:flex;align-items:baseline;gap:14px}
+.line .k{min-width:118px;flex:none}
+</style></head><body><div style="display:flex;gap:16px">
+<div style="flex:1;background:#fff;border:1px solid var(--border-hairline);border-radius:var(--r-lg);padding:16px"><div class="k" style="margin-bottom:8px">기본</div><div style="font-size:var(--fs-body-lg);font-weight:700;color:var(--text-strong)">나루 주거래우대통장</div><div style="font-size:var(--fs-body-sm);color:var(--text-muted)">나루은행 302-2212-1373-21</div><div style="font-size:var(--fs-amount);font-weight:700;margin-top:8px;font-variant-numeric:tabular-nums;color:var(--text-strong)">1,175,776원</div></div>
+<div class="naru-bigtext" style="flex:1;background:#fff;border:1px solid var(--teal-300);border-radius:var(--r-lg);padding:16px"><div class="k" style="margin-bottom:8px">.naru-bigtext</div><div style="font-size:var(--fs-body-lg);font-weight:700;color:var(--text-strong)">나루 주거래우대통장</div><div style="font-size:var(--fs-body-sm);color:var(--text-muted)">나루은행 302-2212-1373-21</div><div style="font-size:var(--fs-amount);font-weight:700;margin-top:8px;font-variant-numeric:tabular-nums;color:var(--text-strong)">1,175,776원</div></div>
+</div></body></html>

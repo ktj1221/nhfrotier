@@ -1,0 +1,64 @@
+:root{
+/* ── Brand: 나루 Teal ─────────────────────────────── */
+--teal-50:#E7F5F2;--teal-100:#C4E8E1;--teal-200:#93D6C8;--teal-300:#55BCA9;
+--teal-400:#1E9F8C;--teal-500:#0B8478;--teal-600:#076A61;--teal-700:#05534C;
+--teal-800:#043D38;--teal-900:#032A27;
+/* ── Accent: 감귤 Amber ───────────────────────────── */
+--amber-50:#FFF3EA;--amber-100:#FFE0CB;--amber-200:#FFC29B;--amber-300:#FFA469;
+--amber-400:#FF8A3D;--amber-500:#F2701C;--amber-600:#CC580E;--amber-700:#9C420A;
+/* ── Neutral: cool ink ────────────────────────────── */
+--ink-0:#FFFFFF;--ink-25:#FAFBFB;--ink-50:#F4F6F6;--ink-100:#EAEEEE;--ink-200:#DBE1E1;
+--ink-300:#C0C8C8;--ink-400:#98A2A2;--ink-500:#6E7878;--ink-600:#4C5555;
+--ink-700:#333B3B;--ink-800:#1E2525;--ink-900:#0E1414;
+/* ── Support hues (category tiles, badges) ────────── */
+--violet-100:#E9E7FD;--violet-400:#7A6CF0;--violet-600:#5445D6;
+--sky-100:#DDEDFD;--sky-400:#3E9BF0;--sky-600:#1D72C4;
+--rose-100:#FDE6E6;--rose-400:#F06767;--rose-600:#CF3B3B;
+--lime-100:#E8F5D9;--lime-400:#78BE3C;--lime-600:#568C25;
+--gold-100:#FCEFCF;--gold-400:#EFB528;--gold-600:#B98708;
+/* ── Object palette — saturated fills for MenuGrid objects and category art ── */
+--obj-blue:#3E9BF0;--obj-blue-deep:#2B6CF6;--obj-amber:#FFA92E;--obj-green:#4CAF6A;
+--obj-violet:#8B7BF0;--obj-pink:#E8558F;--obj-red:#F0545A;--obj-gold:#F5B72A;
+--obj-teal:#12A594;
+/* ── Semantic: status ─────────────────────────────── */
+--success:#0F9D58;--success-bg:#E4F5EC;
+--warning:#EFA300;--warning-bg:#FDF3DC;
+--danger:#DB3D40;--danger-bg:#FDE9E9;
+--info:#2B6CF6;--info-bg:#E5EDFE;
+/* ── Semantic: KR finance direction (상승 red / 하락 blue) ── */
+--money-up:#DB3D40;--money-down:#2B6CF6;--money-flat:var(--ink-500);
+/* ── Semantic aliases: surfaces ───────────────────── */
+--surface-app:var(--ink-50);
+--surface-card:var(--ink-0);
+--surface-sunken:var(--ink-100);
+--surface-inverse:var(--ink-900);
+--surface-brand:var(--teal-500);
+--surface-brand-soft:var(--teal-50);
+--surface-accent-soft:var(--amber-50);
+--surface-scrim:rgba(14,20,20,.48);
+--surface-sheet:var(--ink-0);
+/* ── Semantic aliases: text ───────────────────────── */
+--text-strong:var(--ink-900);
+--text-body:var(--ink-800);
+--text-muted:var(--ink-500);
+--text-subtle:var(--ink-400);
+--text-disabled:var(--ink-300);
+--text-on-brand:#FFFFFF;
+--text-on-inverse:#FFFFFF;
+--text-brand:var(--teal-600);
+--text-link:var(--teal-600);
+/* ── Semantic aliases: borders ────────────────────── */
+--border-hairline:var(--ink-100);
+--border-default:var(--ink-200);
+--border-strong:var(--ink-300);
+--border-brand:var(--teal-500);
+--border-focus:var(--teal-400);
+/* ── Semantic aliases: interactive ────────────────── */
+--action-primary:var(--teal-500);
+--action-primary-press:var(--teal-600);
+--action-secondary:var(--ink-100);
+--action-secondary-press:var(--ink-200);
+--action-disabled:var(--ink-200);
+--action-on-disabled:var(--ink-400);
+--overlay-press:rgba(14,20,20,.06);
+}

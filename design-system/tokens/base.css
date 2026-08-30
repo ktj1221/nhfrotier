@@ -1,0 +1,9 @@
+/* Minimal, opinion-free resets so specimen cards and kits share a baseline. */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--font-sans);font-size:var(--fs-body);line-height:var(--lh-normal);letter-spacing:var(--ls-body);color:var(--text-body);background:var(--surface-app);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;word-break:keep-all;overflow-wrap:break-word}
+a{color:var(--text-link);text-decoration:none}
+a:hover{color:var(--teal-700);text-decoration:underline}
+button{font:inherit;letter-spacing:inherit;color:inherit}
+.naru-num{font-family:var(--font-numeric);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;letter-spacing:var(--ls-numeric)}
+/* 큰글 (large-text) accessibility mode — scale the whole type ramp from one class */
+.naru-bigtext{--fs-body-lg:19px;--fs-body:17px;--fs-body-sm:16px;--fs-caption:15px;--fs-title-3:21px;--fs-title-2:24px;--fs-title-1:28px;--fs-amount:27px;--fs-amount-hero:36px}

@@ -1,3 +1,15 @@
 # mockup/claude_test is its own git repository (nested .git) - never track it here,
 # it was previously committed as a broken submodule reference and broke GitHub Pages checkout.
 mockup/claude_test/
+
+# 디자인 시스템 원본 압축본 — design-system/ 에 풀어서 커밋하므로 중복이다.
+올원뱅크 Design System.zip
+
+# 디자인 시스템에 첨부된 참고 캡처(올원뱅크 앱 화면).
+# 이 저장소의 tj 브랜치 루트는 GitHub Pages 로 공개 서빙되므로 커밋하지 않는다.
+# 빌드는 design-system/tokens/ 만 사용하므로 없어도 동작한다.
+design-system/uploads/
+
+# OS
+Thumbs.db
+.DS_Store

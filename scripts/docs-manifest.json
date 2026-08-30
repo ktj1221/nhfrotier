@@ -1,0 +1,127 @@
+{
+  "title": "NH 위드캔버스 프로젝트 문서",
+  "subtitle": "AI 기반 NH 업무 제작 · 협의 · 의사결정 자산화 플랫폼 — 관리자 · 개발자용 통합 문서 허브",
+  "repo": "ktj1221/nhfrotier",
+  "roles": [
+    {
+      "id": "pm",
+      "label": "관리자 · 기획",
+      "desc": "제품 방향과 결정 사항을 확인합니다",
+      "docs": [
+        "docs/NH뚝딱협업스튜디오_기획안.md",
+        "개발문서/01_PRD.md",
+        "개발문서/02_USER_STORIES_AC.md",
+        "개발문서/08_DECISIONS_OPEN_ISSUES.md"
+      ]
+    },
+    {
+      "id": "dev",
+      "label": "개발자",
+      "desc": "구현에 필요한 명세와 규범을 확인합니다",
+      "docs": [
+        "개발문서/03_IA_FUNCTION_SPEC.md",
+        "개발문서/04_SYSTEM_ARCHITECTURE.md",
+        "개발문서/05_API_DB_SPEC.md",
+        "개발문서/06_DEVELOPMENT_BACKLOG.md",
+        "MockupGen_기능명세서.md",
+        "docs/guidelines/WORKFLOW.md"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "plan",
+      "label": "기획",
+      "docs": [
+        {
+          "path": "docs/NH뚝딱협업스튜디오_기획안.md",
+          "title": "프로젝트 계획서",
+          "note": "「AI Agent 챌린지」 최종개선본"
+        }
+      ]
+    },
+    {
+      "id": "dev",
+      "label": "개발문서",
+      "docs": [
+        {
+          "path": "개발문서/README.md",
+          "title": "문서 패키지 개요",
+          "note": "01~08 인덱스 · 권장 개발 순서"
+        },
+        {
+          "path": "개발문서/01_PRD.md",
+          "title": "01 · PRD",
+          "note": "제품 목표 · 범위 · FR-01~12"
+        },
+        {
+          "path": "개발문서/02_USER_STORIES_AC.md",
+          "title": "02 · User Stories & AC",
+          "note": "Epic E1~E6 · US-001~060"
+        },
+        {
+          "path": "개발문서/03_IA_FUNCTION_SPEC.md",
+          "title": "03 · IA & 기능명세",
+          "note": "화면 S01~S07 · 상태 모델"
+        },
+        {
+          "path": "개발문서/04_SYSTEM_ARCHITECTURE.md",
+          "title": "04 · 시스템 아키텍처",
+          "note": "Linux + Docker · AI Orchestrator"
+        },
+        {
+          "path": "개발문서/05_API_DB_SPEC.md",
+          "title": "05 · API / DB",
+          "note": "엔드포인트 · 테이블 · 관계"
+        },
+        {
+          "path": "개발문서/06_DEVELOPMENT_BACKLOG.md",
+          "title": "06 · 개발 백로그",
+          "note": "P0~P5 단계 · Sprint · 티켓"
+        },
+        {
+          "path": "개발문서/07_QA_SECURITY_OPERATIONS.md",
+          "title": "07 · QA · 보안 · 운영",
+          "note": "테스트 · 장애 대응 · 배포 승인"
+        },
+        {
+          "path": "개발문서/08_DECISIONS_OPEN_ISSUES.md",
+          "title": "08 · 결정 & 미결",
+          "note": "확정 사항 · 협의 필요 항목"
+        }
+      ]
+    },
+    {
+      "id": "proto",
+      "label": "프로토타입",
+      "docs": [
+        {
+          "path": "MockupGen_기능명세서.md",
+          "title": "MockupGen 기능명세서",
+          "note": "mockup/ Next.js 앱 역공학 명세 · P0~P3 이슈"
+        }
+      ]
+    },
+    {
+      "id": "guide",
+      "label": "개발 가이드라인",
+      "docs": [
+        {
+          "path": "docs/guidelines/WORKFLOW.md",
+          "title": "개발 워크플로",
+          "note": "3-Phase 탐색 → 계획 → 실행"
+        },
+        {
+          "path": "docs/guidelines/CLEAN_CODE.md",
+          "title": "클린 코드 규칙",
+          "note": "네이밍 · 함수 · 구조 · 테스트"
+        },
+        {
+          "path": "docs/guidelines/SECURITY.md",
+          "title": "보안 규칙",
+          "note": "ISMS-P 기반 시큐어 개발"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Core" subtitle="Button, IconButton, Badge, Chip, Card, AmountText, Icon" -->
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script><style>body{margin:0;padding:20px;background:var(--surface-app);font-family:var(--font-sans)}
+.grp{display:flex;flex-direction:column;gap:14px}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.lbl{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-subtle)}</style></head><body><div id="root"></div>
+<script type="text/babel">
+const {Button,IconButton,Badge,Chip,Card,AmountText,Divider,Icon}=window.YeoulBankDesignSystem_073d1f;
+function Demo(){const [sel,setSel]=React.useState('a');return (
+<div className="grp">
+  <div className="row">
+    <Button variant="primary">기본</Button>
+    <Button variant="secondary">보조</Button>
+    <Button variant="outline">이체</Button>
+    <Button variant="ghost">전체보기</Button>
+    <Button variant="inverse">바로가기</Button>
+    <Button variant="danger">해지</Button>
+    <Button disabled>비활성</Button>
+    <Button loading>확인중</Button>
+  </div>
+  <div className="row">
+    <Button size="sm">sm 34</Button><Button size="md">md 44</Button>
+    <Button size="lg">lg 52</Button><Button size="xl" leadingIcon={<Icon name="lock" size={18}/>}>xl 56 · 하단 CTA</Button>
+  </div>
+  <div className="row">
+    <IconButton label="알림" tone="soft"><Icon name="bell" size={20}/></IconButton>
+    <IconButton label="알림" badge><Icon name="bell" size={22}/></IconButton>
+    <IconButton label="지갑" tone="brand" shape="squircle"><Icon name="wallet" size={20}/></IconButton>
+    <IconButton label="검색" tone="inverse"><Icon name="search" size={20}/></IconButton>
+    <Badge tone="brand">신규</Badge><Badge tone="info">출금예정</Badge><Badge tone="success" size="sm">D-12</Badge>
+    <Badge tone="warning">점검중</Badge><Badge tone="danger">지연</Badge><Badge tone="solid">최대 8%</Badge>
+    <Chip selected={sel==='a'} onClick={()=>setSel('a')}>자산·건강</Chip>
+    <Chip selected={sel==='b'} onClick={()=>setSel('b')}>생활·통신</Chip>
+  </div>
+  <div className="row" style={{alignItems:'stretch'}}>
+    <Card style={{flex:1}}><div className="lbl">card</div><AmountText value={1175776}/></Card>
+    <Card tone="brand" style={{flex:1}}><div className="lbl">brand</div><AmountText value={119651} unit="P"/></Card>
+    <Card tone="inverse" style={{flex:1}}><div className="lbl">inverse</div><AmountText value={-320000} signed direction="down" size="sm" style={{color:'#fff'}}/></Card>
+    <Card tone="flat" style={{flex:1}}><div className="lbl">flat · 상승</div><AmountText value={320000} signed direction="up" size="sm"/></Card>
+  </div>
+</div>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

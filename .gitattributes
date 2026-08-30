@@ -1,0 +1,2 @@
+# 셸 훅은 반드시 LF 여야 한다. CRLF 가 되면 "#!/bin/sh\r" 로 해석돼 실행되지 않는다.
+.githooks/** text eol=lf

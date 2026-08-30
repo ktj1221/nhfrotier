@@ -1,0 +1,14 @@
+:root{
+--font-sans:"Pretendard Variable","Pretendard",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+--font-numeric:var(--font-sans);
+/* Sizes — mobile-first. Body baseline is 15px; 큰글 mode scales the root. */
+--fs-display:34px;--fs-title-1:26px;--fs-title-2:22px;--fs-title-3:19px;
+--fs-body-lg:17px;--fs-body:15px;--fs-body-sm:14px;--fs-caption:13px;--fs-micro:11px;
+--fs-amount-hero:32px;--fs-amount:24px;--fs-amount-sm:18px;
+/* Line heights — Korean needs air; 1.5 for prose, 1.3 for headlines */
+--lh-tight:1.28;/* @kind font */--lh-snug:1.38;/* @kind font */--lh-normal:1.5;/* @kind font */--lh-loose:1.62;/* @kind font */
+/* Weights — Pretendard variable axis */
+--fw-regular:400;/* @kind font */--fw-medium:500;/* @kind font */--fw-semibold:600;/* @kind font */--fw-bold:700;/* @kind font */--fw-extrabold:800;/* @kind font */
+/* Tracking — Korean tightens slightly at display sizes */
+--ls-display:-0.03em;/* @kind font */--ls-title:-0.02em;/* @kind font */--ls-body:-0.01em;/* @kind font */--ls-numeric:-0.02em;/* @kind font */
+}

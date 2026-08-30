@@ -1,0 +1,8 @@
+/* Iconography — Lucide web font (ISC). FLAGGED SUBSTITUTION: no brand icon set was supplied.
+   Lucide's 24px box / 2px stroke / round caps are the closest common-license match to the
+   outline glyphs in the source screenshots.
+   Note: a solid-weight second family (Phosphor) was trialled for category tiles and removed —
+   its CDN is not reachable from this environment. Category tiles get their weight from the
+   tinted tile + accent badge composition in MenuGrid instead. */
+@import url("https://unpkg.com/lucide-static@latest/font/lucide.css");
+.naru-icon{display:inline-flex;align-items:center;justify-content:center;line-height:1;font-style:normal}

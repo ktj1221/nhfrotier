@@ -1,0 +1,27 @@
+#!/bin/sh
+# 문서가 바뀐 커밋에서만 프로젝트문서.html 을 다시 만들고 같은 커밋에 포함한다.
+# 활성화: node scripts/install-hooks.mjs
+# 건너뛰기: SKIP_DOCS_BUILD=1 git commit ...
+set -eu
+
+[ "${SKIP_DOCS_BUILD:-}" = "1" ] && exit 0
+
+# -z 로 읽어야 한글 경로가 "\352\260..." 로 quote되지 않는다.
+CHANGED=$(git diff --cached --name-only -z --diff-filter=ACMR | tr '\0' '\n' |
+  grep -E '^(개발문서/|docs/|scripts/|design-system/tokens/|MockupGen_기능명세서\.md$)' || true)
+
+[ -z "$CHANGED" ] && exit 0
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-commit: node 를 찾을 수 없어 문서 페이지를 만들 수 없습니다." >&2
+  echo "            건너뛰려면 SKIP_DOCS_BUILD=1 git commit ..." >&2
+  exit 1
+fi
+
+if ! node scripts/build-docs-site.mjs; then
+  echo "pre-commit: 문서 페이지 생성 실패 — 커밋을 중단합니다." >&2
+  exit 1
+fi
+
+git add 프로젝트문서.html
+echo "pre-commit: 프로젝트문서.html 갱신 완료"

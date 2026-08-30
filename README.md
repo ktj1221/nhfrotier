@@ -20,6 +20,45 @@ node scripts/build-docs-site.mjs    # 수동 빌드
 
 Node.js 18 이상이면 되고 설치할 패키지는 없습니다. 디자인 토큰은 `design-system/tokens/`에서 가져옵니다.
 
+## 🌿 팀 작업 흐름
+
+```
+main  ◄─PR─  dev  ◄─PR─  개인 브랜치 (팀원당 1개, 고정 유지)
+```
+
+모두가 `dev`를 기준으로 받아 자기 브랜치에서 개발하고, 다시 `dev`로 올립니다.
+
+**최초 1회**
+
+```bash
+git clone https://github.com/nhfrontier/nhfrotier.git
+cd nhfrotier
+git switch -c <이름>        # 기본 브랜치가 dev라 자동으로 dev에서 분기됩니다
+git push -u origin <이름>
+```
+
+**작업할 때마다**
+
+```bash
+node scripts/sync-dev.mjs   # 1. 최신 dev 받기 (git 훅도 자동으로 켜집니다)
+# ... 개발 ...
+git push origin <이름>       # 2. 자기 브랜치에 올리기
+```
+
+3. GitHub에서 **개인 브랜치 → `dev`** PR을 올립니다. base는 자동으로 `dev`입니다.
+4. 팀원 1명 이상 확인 후 merge합니다. (GitHub 모바일 앱에서도 가능)
+
+`sync-dev.mjs`는 `dev`·`main` 위에 있거나 커밋 안 된 변경이 있으면 **아무것도 하지 않고 멈춥니다.** 개인 브랜치는 merge 후에도 지우지 않고 계속 재사용합니다.
+
+### 목업 공유 링크
+
+`dev` 또는 `main`에 push되면 GitHub Pages가 자동 배포합니다. 용도가 다르니 **건네줄 때 어느 쪽인지 밝혀주세요.**
+
+| 링크 | 기준 | 용도 |
+|---|---|---|
+| **[팀 내부 확인용](https://nhfrontier.github.io/nhfrotier/dev/)** — `/dev/` | `dev` | dev에 merge되면 즉시 갱신. 일상 작업은 여기만 보면 됩니다 |
+| **[외부 공유용 확정본](https://nhfrontier.github.io/nhfrotier/)** — 루트 `/` | `main` | 보여줄 준비가 된 것만. `dev` → `main` PR로 승격합니다 |
+
 ## 문서
 
 ### 개발 요건 (정본)

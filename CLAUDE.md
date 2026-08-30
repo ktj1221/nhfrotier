@@ -34,22 +34,45 @@
 ### 브랜치 운영 (팀 git flow)
 
 ```
-main  ◄─PR─  dev  ◄─PR─  개인 브랜치 (팀원당 1개, 고정 유지: tj, ...)
+main  ◄─PR─  dev  ◄─PR─  개인 브랜치 (팀원당 1개, 고정 유지: tj, kyj, hy, ...)
 ```
 
 - **각자 자기 개인 브랜치에서만 작업한다.** `dev`·`main`에 직접 push 금지.
 - 기능 완성 시 GitHub에서 **개인 브랜치 → dev PR**을 올리고, 팀원 1명 이상 확인 후 merge한다. (PR 생성·리뷰·merge는 GitHub 모바일 앱에서도 가능)
-- **드리프트 방지**: 매 작업 시작 전 자기 브랜치에서 `git pull origin dev`로 dev 변경분을 merge한다. 최소 주 1회 이상.
+- **드리프트 방지**: 매 작업 시작 전 자기 브랜치에서 `node scripts/sync-dev.mjs`를 실행해 dev 변경분을 merge한다. 최소 주 1회 이상.
 - 배포/마일스톤 시점에 **dev → main PR**로 반영한다.
 - 기본 브랜치는 `dev` — PR base가 자동으로 dev가 되어 main 오발사를 방지한다.
+- 개인 브랜치는 merge 후에도 **삭제하지 않는다.** 팀원당 하나를 계속 재사용한다.
+- **브랜치 보호 규칙은 의도적으로 두지 않는다.** 위 규칙은 합의로 지키며, 기술적으로 막지 않는다. "왜 보호가 없지?" 하고 임의로 추가하지 말 것.
+
+**작업 시작 (매번)**:
+```bash
+node scripts/sync-dev.mjs   # dev 최신화 + git 훅 자동 활성화
+```
+- `dev`·`main` 위에 있으면 중단된다. 개인 브랜치에서만 실행된다.
+- 커밋되지 않은 변경이 있으면 중단된다. 먼저 커밋하거나 `git stash` 한다.
 
 **팀원 최초 세팅 절차**:
 ```bash
-git clone https://github.com/ktj1221/nhfrotier.git
+git clone https://github.com/nhfrontier/nhfrotier.git
 cd nhfrotier
-git checkout -b <이름>     # 기본 브랜치 dev에서 자동 분기
+git switch -c <이름>        # 기본 브랜치 dev에서 자동 분기
 git push -u origin <이름>
+node scripts/sync-dev.mjs   # 훅 활성화 확인
 ```
+
+### 목업 공유 (GitHub Pages)
+
+두 경로를 **역할을 나눠** 유지한다. `.github/workflows/pages.yml`이 `main`·`dev` push마다 자동 배포한다.
+
+| 링크 | 기준 브랜치 | 용도 |
+|---|---|---|
+| <https://nhfrontier.github.io/nhfrotier/dev/> | `dev` | **팀 내부 확인용.** dev에 merge되면 즉시 갱신된다 |
+| <https://nhfrontier.github.io/nhfrotier/> | `main` | **외부 공유용 확정본.** 보여줄 준비가 된 것만 올린다 |
+
+- 일상 작업은 `/dev/`만 보면 된다. 별도 승격 절차가 없다.
+- 외부에 공유할 때만 `dev` → `main` PR로 승격한다. 승격 전 `/dev/`에서 먼저 확인할 것.
+- **팀원에게 링크를 줄 때 어느 쪽인지 명시할 것.** 확정본이 아닌 것을 루트 링크로 오해시키지 말 것.
 
 ## 개발 프로세스
 

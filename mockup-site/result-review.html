@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NH뚝딱협업스튜디오 - 결과/리뷰</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: #4f46e5; text-decoration: none; }
+  a:hover { color: #4338ca; }
+  .ptab { padding:12px 16px;font-size:13px;font-weight:600;color:#94a3b8;border-bottom:2px solid transparent; }
+  .ptab.active { color:#4f46e5;border-bottom-color:#4f46e5; }
+  .obtn { display:flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;font-weight:500;color:#475569;background:#fff; }
+  .obtn:hover { background:#f8fafc;color:#475569; }
+  .dbtn { padding:5px 10px;border-radius:6px;font-size:11px;font-weight:600;border:1px solid #e2e8f0;background:#fff;color:#64748b; }
+  .pin { position:absolute;width:20px;height:20px;border-radius:50%;background:#4f46e5;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(79,70,229,.2); }
+</style>
+</head>
+<body>
+<div style="width:1440px;height:900px;background:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;display:flex;flex-direction:column;overflow:hidden;">
+
+  <header style="height:56px;background:#ffffff;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:10px;padding:0 24px;flex-shrink:0;">
+    <div style="width:26px;height:26px;background:#4f46e5;border-radius:7px;display:flex;align-items:center;justify-content:center;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    </div>
+    <a href="main.html" style="font-size:13px;color:#94a3b8;">대시보드</a>
+    <span style="font-size:13px;color:#cbd5e1;">/</span>
+    <a href="projects.html" style="font-size:13px;color:#94a3b8;">프로젝트</a>
+    <span style="font-size:13px;color:#cbd5e1;">/</span>
+    <span style="font-size:13px;font-weight:600;color:#0f172a;">고객 포털 리뉴얼</span>
+    <span style="font-size:11px;font-weight:600;color:#4f46e5;background:#eef2ff;padding:3px 8px;border-radius:999px;">ACTIVE</span>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+      <a class="obtn" href="version.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l8-4 8 4-8 4-8-4zm0 5l8 4 8-4M4 12l8 4 8-4"/></svg>Version</a>
+      <a class="obtn" href="history.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0"/></svg>History</a>
+      <button class="obtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Export</button>
+      <div style="width:1px;height:20px;background:#e2e8f0;margin:0 2px;"></div>
+      <div style="width:28px;height:28px;border-radius:50%;background:#4f46e5;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;">김</div>
+    </div>
+  </header>
+
+  <div style="height:44px;background:#fff;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;padding:0 24px;gap:8px;flex-shrink:0;">
+    <a class="ptab" href="workspace.html">작업공간</a>
+    <a class="ptab" href="ai-chat.html">AI Chat</a>
+    <span class="ptab active">결과/리뷰</span>
+    <a class="ptab" href="version.html">Version</a>
+    <a class="ptab" href="history.html">History</a>
+  </div>
+
+  <div style="flex:1;display:flex;overflow:hidden;">
+
+    <!-- Result preview -->
+    <main style="flex:1;overflow:auto;display:flex;justify-content:center;padding:24px;background:#f1f5f9;min-width:0;">
+      <div style="position:relative;width:100%;max-width:820px;height:fit-content;">
+        <div style="background:#fff;border-radius:10px;box-shadow:0 4px 16px rgba(15,23,42,.08);overflow:hidden;">
+          <div style="height:44px;background:#4f46e5;display:flex;align-items:center;padding:0 18px;gap:10px;">
+            <div style="width:16px;height:16px;border-radius:4px;background:rgba(255,255,255,.25);"></div>
+            <span style="font-size:12px;color:#fff;font-weight:600;">환영합니다, 고객님</span>
+            <span style="margin-left:auto;font-size:11px;color:#fff;background:rgba(255,255,255,.2);padding:4px 10px;border-radius:999px;">포인트 12,400P</span>
+          </div>
+          <div style="padding:20px;display:flex;flex-direction:column;gap:16px;">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+              <div style="height:64px;background:#eef2ff;border-radius:8px;border:1px solid #e0e7ff;"></div>
+              <div style="height:64px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0;"></div>
+              <div style="height:64px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0;"></div>
+            </div>
+            <div>
+              <div style="height:12px;width:120px;background:#e2e8f0;border-radius:4px;margin-bottom:10px;"></div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="height:40px;background:#f8fafc;border-radius:8px;border:1px solid #f1f5f9;"></div>
+                <div style="height:40px;background:#f8fafc;border-radius:8px;border:1px solid #f1f5f9;"></div>
+              </div>
+            </div>
+            <div>
+              <div style="height:12px;width:96px;background:#e2e8f0;border-radius:4px;margin-bottom:10px;"></div>
+              <div style="height:52px;background:#f8fafc;border-radius:8px;border:1px solid #f1f5f9;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pin" style="top:34px;left:230px;">1</div>
+        <div class="pin" style="top:118px;left:80px;">2</div>
+        <div class="pin" style="top:118px;left:220px;">3</div>
+      </div>
+    </main>
+
+    <!-- Right: AI review + comments -->
+    <aside style="width:400px;background:#fff;border-left:1px solid #e2e8f0;display:flex;flex-direction:column;flex-shrink:0;overflow:hidden;">
+
+      <div style="flex:1.3;overflow:auto;padding:16px;border-bottom:1px solid #e2e8f0;">
+        <h2 style="font-size:12.5px;font-weight:700;color:#0f172a;margin:0 0 12px;">AI 의견요약</h2>
+
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:#16a34a;"></div>
+            <span style="font-size:11px;font-weight:700;color:#15803d;">합의 · 2건</span>
+          </div>
+          <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;margin-bottom:8px;">
+            <p style="font-size:12px;font-weight:600;color:#1e293b;margin:0 0 4px;">① 포인트 영역 시각적 강조 필요</p>
+            <p style="font-size:11.5px;color:#64748b;margin:0 0 8px;line-height:1.5;">AI 제안: 포인트 카드 크기 1.5배 확대, 인디고 강조 색상 적용 · 관련 의견 2건</p>
+            <span style="font-size:11px;font-weight:600;color:#15803d;background:#f0fdf4;padding:4px 10px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+              반영됨
+            </span>
+          </div>
+          <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;">
+            <p style="font-size:12px;font-weight:600;color:#1e293b;margin:0 0 4px;">색상 톤을 브랜드 가이드와 통일</p>
+            <p style="font-size:11.5px;color:#64748b;margin:0 0 8px;line-height:1.5;">AI 제안: 전체 배경/버튼 색상을 인디고 계열로 일괄 정리 · 관련 의견 2건</p>
+            <div style="display:flex;gap:6px;">
+              <button class="dbtn" style="color:#15803d;border-color:#bbf7d0;">반영</button>
+              <button class="dbtn" style="color:#b45309;border-color:#fde68a;">보류</button>
+              <button class="dbtn" style="color:#b91c1c;border-color:#fecaca;">반려</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:#d97706;"></div>
+            <span style="font-size:11px;font-weight:700;color:#b45309;">이견 · 1건</span>
+          </div>
+          <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;">
+            <p style="font-size:12px;font-weight:600;color:#1e293b;margin:0 0 4px;">② 포인트 색상: 브랜드 오렌지 유지 vs 인디고 통일</p>
+            <p style="font-size:11.5px;color:#64748b;margin:0 0 8px;line-height:1.5;">이서연은 오렌지 유지, 박준혁은 인디고 통일을 제안 · 상반된 의견 2건</p>
+            <div style="display:flex;gap:6px;">
+              <button class="dbtn" style="color:#15803d;border-color:#bbf7d0;">반영</button>
+              <button class="dbtn" style="color:#b45309;border-color:#fde68a;">보류</button>
+              <button class="dbtn" style="color:#b91c1c;border-color:#fecaca;">반려</button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:#2563eb;"></div>
+            <span style="font-size:11px;font-weight:700;color:#1d4ed8;">추가확인 필요 · 1건</span>
+          </div>
+          <div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;">
+            <p style="font-size:12px;font-weight:600;color:#1e293b;margin:0 0 4px;">③ 포인트 표기 방식 약관 검토 필요</p>
+            <p style="font-size:11.5px;color:#64748b;margin:0 0 8px;line-height:1.5;">최유진(준법)의 확인 요청 · 관련 의견 1건</p>
+            <div style="display:flex;gap:6px;">
+              <button class="dbtn" style="color:#15803d;border-color:#bbf7d0;">반영</button>
+              <button class="dbtn" style="color:#b45309;border-color:#fde68a;">보류</button>
+              <button class="dbtn" style="color:#b91c1c;border-color:#fecaca;">반려</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;overflow:auto;padding:14px;">
+        <h2 style="font-size:12.5px;font-weight:700;color:#0f172a;margin:0 0 10px;">댓글 (원 의견)</h2>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;gap:8px;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#ec4899;color:#fff;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">이</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+                <span style="font-size:11px;font-weight:600;color:#1e293b;">이서연</span>
+                <span style="font-size:9.5px;font-weight:700;color:#4f46e5;background:#eef2ff;padding:1px 5px;border-radius:5px;">①</span>
+                <span style="font-size:10px;color:#94a3b8;margin-left:auto;">14:20</span>
+              </div>
+              <p style="font-size:11.5px;color:#334155;background:#f8fafc;border-radius:8px;padding:7px 9px;margin:0;line-height:1.5;">포인트 영역이 다른 카드에 묻혀서 잘 안 보여요.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#14b8a6;color:#fff;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">최</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+                <span style="font-size:11px;font-weight:600;color:#1e293b;">최유진</span>
+                <span style="font-size:9.5px;font-weight:700;color:#4f46e5;background:#eef2ff;padding:1px 5px;border-radius:5px;">③</span>
+                <span style="font-size:10px;color:#94a3b8;margin-left:auto;">14:35</span>
+              </div>
+              <p style="font-size:11.5px;color:#334155;background:#f8fafc;border-radius:8px;padding:7px 9px;margin:0;line-height:1.5;">포인트 표기 방식이 약관상 문제없는지 확인이 필요합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+</body>
+</html>

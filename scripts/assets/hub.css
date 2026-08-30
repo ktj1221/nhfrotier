@@ -80,7 +80,10 @@
   --action-secondary-press: var(--ink-500);
   --overlay-press: color-mix(in srgb, var(--ink-0) 8%, transparent);
 
+  /* 시맨틱 -bg 는 라이트 전용 파스텔이라 어두운 카드 위에서 흰 딱지처럼 뜬다. 바탕에 섞어 쓴다. */
   --info-bg: color-mix(in srgb, var(--info) 26%, var(--ink-800));
+  --success-bg: color-mix(in srgb, var(--success) 26%, var(--ink-800));
+  --warning-bg: color-mix(in srgb, var(--warning) 26%, var(--ink-800));
 
   --card-shadow: var(--shadow-none);
   --card-line: var(--border-hairline);
@@ -96,13 +99,17 @@
 }
 
 /* ── 그룹 색상 ──────────────────────────────────────
-   DS 서포트 5색 중 4색을 문서 그룹에 영구 배정한다. 색이 그룹의 정체성을
+   DS 서포트 5색을 문서 그룹에 영구 배정한다. 색이 그룹의 정체성을
    나르므로 순서를 바꾸지 말 것. --g-soft 는 라이트에서는 -100 단계를 그대로,
-   다크에서는 -400 을 바탕에 섞어 만든다. */
+   다크에서는 -400 을 바탕에 섞어 만든다.
+   rose 는 기능명세 계열이 함께 쓴다 — 사이드바 "기능" 그룹, 기능 대시보드,
+   기능명세 문서가 모두 같은 대상(FR-01~12)을 가리키므로 색을 나누면 오히려 흩어진다. */
 [data-group="plan"]  { --g-400: var(--violet-400); --g-600: var(--violet-600); --g-soft: var(--violet-100); }
 [data-group="dev"]   { --g-400: var(--sky-400);    --g-600: var(--sky-600);    --g-soft: var(--sky-100); }
 [data-group="proto"] { --g-400: var(--lime-400);   --g-600: var(--lime-600);   --g-soft: var(--lime-100); }
 [data-group="guide"] { --g-400: var(--gold-400);   --g-600: var(--gold-600);   --g-soft: var(--gold-100); }
+[data-group="fspec"],
+[data-group="feature"] { --g-400: var(--rose-400); --g-600: var(--rose-600); --g-soft: var(--rose-100); }
 
 :root[data-theme="dark"] [data-group] {
   --g-soft: color-mix(in srgb, var(--g-400) 20%, var(--g-soft-base));
@@ -621,7 +628,226 @@ input:focus-visible {
   .filters button:active,
   .theme-toggle:active,
   .role a:active,
+  .fgroup button:active,
+  .fcard:active,
   .results .hit:active { transform: none; }
+}
+
+/* ── 기능(FR) 단위 뷰 ────────────────────────────
+ *
+ * 이 페이지의 1차 관문은 문서 목록이 아니라 기능 12개다. 카드 하나가 개발 요건 하나이고,
+ * 카드 안에서 "무엇을 · 어느 단계에 · 어디까지 됐는지"가 한눈에 끝나야 한다.
+ *
+ * 상태 3색은 서포트 색이 아니라 시맨틱 색(success/warning)을 쓴다. 서포트 5색은 문서
+ * 그룹이 영구히 소유하는 기억 단서이므로 상태 표시로 재사용하면 신호가 섞인다.
+ * 미착수는 색을 주지 않는다 — 아직 아무 일도 일어나지 않았다는 뜻이 그대로 보이게 한다.
+ */
+.board {
+  margin-top: var(--section-gap);
+  padding: var(--card-pad);
+  background: var(--surface-card);
+  border-radius: var(--r-tile);
+}
+.board-head h2 {
+  font-size: var(--fs-title-2);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-title);
+  color: var(--text-strong);
+}
+.board-head p {
+  margin-top: var(--sp-1);
+  font-size: var(--fs-caption);
+  color: var(--text-muted);
+}
+.board-foot {
+  margin-top: var(--sp-8);
+  font-size: var(--fs-micro);
+  color: var(--text-subtle);
+}
+
+.board-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3) var(--sp-8);
+  margin: var(--sp-8) 0;
+  padding-bottom: var(--sp-6);
+  border-bottom: 1px solid var(--border-hairline);
+}
+.fgroup { display: flex; align-items: center; flex-wrap: wrap; gap: var(--sp-2); }
+.fgroup-k {
+  margin-right: var(--sp-2);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  color: var(--text-subtle);
+}
+.fgroup button {
+  min-height: var(--sp-16);
+  padding: var(--sp-2) var(--sp-6);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-semibold);
+  color: var(--text-body);
+  background: var(--surface-app);
+  border: none;
+  border-radius: var(--r-chip);
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+.fgroup button:hover { color: var(--text-strong); }
+.fgroup button:active { transform: scale(var(--press-scale)); }
+/* 선택 상태는 잉크 블랙 — 틸은 액션 전용이다 (design-system/AGENTS.md) */
+.fgroup button.on {
+  color: var(--text-on-inverse);
+  background: var(--surface-inverse);
+}
+
+.fgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--sp-6);
+}
+.fcard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-9) var(--sp-8);
+  color: inherit;
+  text-decoration: none;
+  background: var(--surface-app);
+  border-left: 3px solid var(--g-400);
+  border-radius: var(--r-field);
+  transition: box-shadow var(--dur-fast) var(--ease-standard);
+}
+.fcard:hover { box-shadow: var(--shadow-card); text-decoration: none; }
+.fcard:active { transform: scale(var(--press-scale)); }
+.fcard.hide { display: none; }
+
+.fcard-top { display: flex; align-items: center; gap: var(--sp-3); }
+.fid {
+  font-family: var(--font-code);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  letter-spacing: .04em;
+  color: var(--text-muted);
+}
+.fphase, .fopen {
+  padding: 0 var(--sp-3);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  border-radius: var(--r-chip);
+}
+.fphase { color: var(--text-body); background: var(--surface-card); }
+.fopen { margin-left: auto; color: var(--warning); background: var(--warning-bg); }
+
+.fcard h3 {
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-title);
+  color: var(--text-strong);
+}
+.fcard p {
+  font-size: var(--fs-caption);
+  line-height: var(--lh-normal);
+  color: var(--text-muted);
+}
+.fmeta { display: flex; flex-direction: column; gap: var(--sp-1); margin-top: var(--sp-2); }
+.fm {
+  font-size: var(--fs-micro);
+  color: var(--text-subtle);
+  overflow-wrap: anywhere;
+}
+.fm b {
+  display: inline-block;
+  min-width: var(--sp-16);
+  margin-right: var(--sp-3);
+  font-weight: var(--fw-bold);
+  color: var(--text-muted);
+}
+
+/* 설계 → 프로토타입 → 운영. 순서가 곧 진행 방향이라 항상 3칸을 같은 자리에 둔다. */
+.fstages, .rail-stages { display: flex; gap: var(--sp-1); margin-top: var(--sp-3); }
+.st {
+  flex: 1;
+  padding: var(--sp-1) var(--sp-2);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-semibold);
+  text-align: center;
+  border-radius: var(--r-xs);
+  white-space: nowrap;
+}
+.st.done { color: var(--success); background: var(--success-bg); }
+.st.partial { color: var(--warning); background: var(--warning-bg); }
+/* 미착수는 채우지 않고 테두리만 남긴다. 다크에서 --text-disabled 와 --surface-sunken 이
+   같은 잉크 단계라 글자가 사라지는 문제도 함께 피한다. */
+.st.todo { color: var(--text-muted); background: transparent; box-shadow: inset 0 0 0 1px var(--border-hairline); }
+
+.roles.compact { margin-top: var(--sp-8); }
+.roles.compact .role { background: var(--surface-card); }
+
+/* ── 기능 상세: 관련 정본 레일 ──────────────────
+ * FR 문서 본문 바로 위. 여기서 PRD·US·화면·API·티켓·미결로 곧장 건너뛴다.
+ * 우측 목차 칼럼이 아니라 본문 폭 안에 두는 이유는, 그 칼럼이 1280px 아래에서
+ * 사라지기 때문이다 — 노트북에서 링크가 통째로 없어지면 안 된다.
+ */
+.rail {
+  padding: var(--sp-8) var(--sp-20);
+  background: var(--surface-card);
+  border: 1px solid var(--card-line);
+  border-top: 1px solid var(--border-hairline);
+  border-bottom: none;
+  box-shadow: var(--card-shadow);
+}
+.rail-title {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  margin-bottom: var(--sp-5);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  letter-spacing: .08em;
+  color: var(--text-subtle);
+}
+.rail-stages { flex: 0 0 auto; margin-top: 0; min-width: var(--sp-32); }
+.rail-groups { display: flex; flex-direction: column; gap: var(--sp-2); }
+.rail-g { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp-2); }
+.rail-k {
+  flex: 0 0 var(--sp-24);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  color: var(--text-muted);
+}
+.rail-g a {
+  padding: var(--sp-1) var(--sp-5);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  color: var(--text-body);
+  text-decoration: none;
+  background: var(--surface-app);
+  border-radius: var(--r-chip);
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+.rail-g a:hover { color: var(--text-brand); text-decoration: none; }
+
+/* ── 사이드바 기능 그룹 ─────────────────────────── */
+.nav a.doc-link.feat {
+  display: grid;
+  grid-template-columns: var(--sp-16) 1fr;
+  align-items: center;
+  gap: 0 var(--sp-3);
+}
+.fnav-id {
+  font-family: var(--font-code);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  color: var(--text-subtle);
+}
+.fnav-name { font-size: var(--fs-body-sm); }
+.fnav-st { grid-column: 2; display: flex; gap: 2px; margin-top: var(--sp-1); }
+/* 사이드바에서는 이름표를 지우고 진행 칸만 남긴다 — 폭이 좁고, 카드에서 이미 읽었다. */
+.fnav-st .st {
+  height: var(--sp-2);
+  padding: 0;
+  font-size: 0;
+  border-radius: var(--r-chip);
 }
 
 /* ── 반응형 ─────────────────────────────────────── */
@@ -632,14 +858,19 @@ input:focus-visible {
   main { max-width: none; padding: var(--sp-9) 0 var(--sp-24); }
   .cover { padding: var(--sp-14) var(--sp-12); }
   .cover h1 { font-size: var(--fs-title-1); }
-  .doc-head, .doc-body { padding-left: var(--sp-12); padding-right: var(--sp-12); }
+  .doc-head, .doc-body, .rail { padding-left: var(--sp-12); padding-right: var(--sp-12); }
   th, td { padding: var(--sp-4) var(--sp-5); }
+  .board { padding: var(--sp-9) var(--sp-8); }
+  .fgrid { grid-template-columns: 1fr; }
+  .rail-k { flex-basis: 100%; }
 }
 
 /* ── 인쇄: 전 문서 펼침 ─────────────────────────── */
 @media print {
   body { background: var(--ink-0); }
-  .side, .toc-col, .results, .filters, .search-box { display: none !important; }
+  .side, .toc-col, .results, .filters, .search-box, .board-filters { display: none !important; }
+  .fcard.hide { display: flex !important; }
+  .rail { box-shadow: none; padding: 0 0 var(--sp-6); }
   .app { display: block; max-width: none; padding: 0; }
   main { max-width: none; padding: 0; }
   article.doc { display: block !important; page-break-before: always; }

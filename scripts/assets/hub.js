@@ -54,6 +54,48 @@
     });
   });
 
+  /* ── 기능 대시보드 필터 ──
+     차원(단계/프로토타입/영역)은 AND 로 겹치고, 각 차원 안에서는 값 하나만 고른다.
+     "미결만"은 켜고 끄는 토글이라 값이 all 로 돌아가지 않는다. */
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.fcard'));
+  var filterButtons = Array.prototype.slice.call(document.querySelectorAll('.board-filters button'));
+  var picked = { phase: 'all', proto: 'all', area: 'all', open: 'all' };
+
+  function hasToken(card, attribute, value) {
+    var tokens = (card.getAttribute(attribute) || '').split(' ');
+    return tokens.indexOf(value) !== -1;
+  }
+
+  function matchesFilters(card) {
+    if (picked.phase !== 'all' && !hasToken(card, 'data-phases', picked.phase)) return false;
+    if (picked.area !== 'all' && !hasToken(card, 'data-areas', picked.area)) return false;
+    if (picked.proto !== 'all' && card.getAttribute('data-proto') !== picked.proto) return false;
+    if (picked.open === 'only' && card.getAttribute('data-open') === '0') return false;
+    return true;
+  }
+
+  function applyFilters() {
+    cards.forEach(function (card) {
+      card.classList.toggle('hide', !matchesFilters(card));
+    });
+  }
+
+  filterButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      var dim = button.getAttribute('data-dim');
+      var value = button.getAttribute('data-value');
+
+      /* 토글 차원은 같은 버튼을 다시 누르면 꺼진다. */
+      picked[dim] = picked[dim] === value && value !== 'all' ? 'all' : value;
+
+      filterButtons.forEach(function (other) {
+        if (other.getAttribute('data-dim') !== dim) return;
+        other.classList.toggle('on', other.getAttribute('data-value') === picked[dim]);
+      });
+      applyFilters();
+    });
+  });
+
   /* ── 우측 목차 ── */
   function buildToc(article) {
     tocCol.textContent = '';

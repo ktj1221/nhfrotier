@@ -16,8 +16,8 @@
 | FR-06 협업 | [FR-06](개발문서/기능명세/FR-06_협업의견.md) | US-030 | S03·S05 | `/comments` | P3 | FE-006, BE-008 |
 | FR-07 AI 의견 취합 | [FR-07](개발문서/기능명세/FR-07_AI의견취합.md) | US-031 | S05 | `/reviews/summarize`·`/reviews` | P3 | FE-007, BE-008 |
 | FR-08 반영 결정 | [FR-08](개발문서/기능명세/FR-08_반영결정.md) | US-032 | S05 | `/reviews/{id}/decisions` | P3 | FE-007, BE-008 |
-| FR-09 Version | [FR-09](개발문서/기능명세/FR-09_버전관리.md) | US-040·041 | S06 | `/versions` 3종 | P4 | FE-008, BE-009 |
-| FR-10 History | [FR-10](개발문서/기능명세/FR-10_히스토리.md) | US-042 | S07 | `/history` | P4 | FE-009, BE-010 |
+| FR-09 Version | [FR-09](개발문서/기능명세/FR-09_버전관리.md) | US-040·041 | S06·S03 진입 | `/versions` 3종 | P4 | FE-008, BE-009 |
+| FR-10 History | [FR-10](개발문서/기능명세/FR-10_히스토리.md) | US-042 | S07·S03 진입 | `/history` | P4 | FE-009, BE-010 |
 | FR-11 Export | [FR-11](개발문서/기능명세/FR-11_Export.md) | US-050 | S03 진입 (❓ 전용 화면 미정의) | `/exports` 2종 | P4 | BE-011 |
 | FR-12 감사 추적 | [FR-12](개발문서/기능명세/FR-12_감사추적.md) | US-060 | 없음 (❓ Admin 미정의) | 없음 (❓ `audit_logs`만) | P0·P4 | BE-010 |
 

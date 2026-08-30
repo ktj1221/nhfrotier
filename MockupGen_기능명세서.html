@@ -386,13 +386,13 @@
   <table class="wide">
     <thead><tr><th style="width:105px">ID</th><th style="width:150px">기능</th><th>상세</th></tr></thead>
     <tbody>
-      <tr><td>FR-01-01</td><td>프로젝트 식별</td><td>URL 쿼리 <code>?id=</code> 로 프로젝트 조회</td></tr>
-      <tr><td>FR-01-02</td><td>유효성 검증</td><td><code>id</code> 누락 또는 프로젝트 미존재 시 <code>index.html</code>로 즉시 리다이렉트</td></tr>
-      <tr><td>FR-01-03</td><td>타이틀 반영</td><td>헤더 제목 및 문서 타이틀을 <code>{프로젝트명} - MockupGen</code> 으로 설정</td></tr>
-      <tr><td>FR-01-04</td><td>초기 렌더</td><td>참조화면 · 히스토리 · 담당자 · 채팅 · 의견 영역 일괄 렌더</td></tr>
-      <tr><td>FR-01-05</td><td>최신 버전 자동 선택</td><td>저장된 목업이 있으면 최신 버전 선택 후 히스토리 탭 전환 <strong>(※ 9.1 이슈 — 현재 무효화됨)</strong></td></tr>
-      <tr><td>FR-01-06</td><td>탭 뱃지</td><td>히스토리 / 담당자 탭 라벨에 건수 표시 (예: <code>히스토리(2)</code>)</td></tr>
-      <tr><td>FR-01-07</td><td>Service Worker</td><td>페이지 로드 시 <code>./sw.js</code> 등록 (PWA 오프라인 지원)</td></tr>
+      <tr><td>PFR-01-01</td><td>프로젝트 식별</td><td>URL 쿼리 <code>?id=</code> 로 프로젝트 조회</td></tr>
+      <tr><td>PFR-01-02</td><td>유효성 검증</td><td><code>id</code> 누락 또는 프로젝트 미존재 시 <code>index.html</code>로 즉시 리다이렉트</td></tr>
+      <tr><td>PFR-01-03</td><td>타이틀 반영</td><td>헤더 제목 및 문서 타이틀을 <code>{프로젝트명} - MockupGen</code> 으로 설정</td></tr>
+      <tr><td>PFR-01-04</td><td>초기 렌더</td><td>참조화면 · 히스토리 · 담당자 · 채팅 · 의견 영역 일괄 렌더</td></tr>
+      <tr><td>PFR-01-05</td><td>최신 버전 자동 선택</td><td>저장된 목업이 있으면 최신 버전 선택 후 히스토리 탭 전환 <strong>(※ 9.1 이슈 — 현재 무효화됨)</strong></td></tr>
+      <tr><td>PFR-01-06</td><td>탭 뱃지</td><td>히스토리 / 담당자 탭 라벨에 건수 표시 (예: <code>히스토리(2)</code>)</td></tr>
+      <tr><td>PFR-01-07</td><td>Service Worker</td><td>페이지 로드 시 <code>./sw.js</code> 등록 (PWA 오프라인 지원)</td></tr>
     </tbody>
   </table>
 
@@ -400,11 +400,11 @@
   <table class="wide">
     <thead><tr><th style="width:105px">ID</th><th style="width:150px">기능</th><th>상세</th></tr></thead>
     <tbody>
-      <tr><td>FR-02-01</td><td>사용자 스위처</td><td>헤더 우측 드롭다운. 전역 사용자 목록 표시, 현재 사용자에 체크 표시</td></tr>
-      <tr><td>FR-02-02</td><td>사용자 전환</td><td>선택 시 <code>mg_current_user</code> 갱신 → 헤더 아바타 · 의견/채팅 입력 폼 즉시 재구성</td></tr>
-      <tr><td>FR-02-03</td><td>사용자 생성</td><td>이름(필수) + 직책/부서(선택) 입력 → 생성 즉시 현재 사용자로 지정</td></tr>
-      <tr><td>FR-02-04</td><td>아바타 규칙</td><td>이름 첫 글자 + <code>COLORS[users.length % 10]</code> 자동 색상 배정</td></tr>
-      <tr><td>FR-02-05</td><td>외부 클릭 닫기</td><td>드롭다운 외 영역 클릭 시 자동 닫힘</td></tr>
+      <tr><td>PFR-02-01</td><td>사용자 스위처</td><td>헤더 우측 드롭다운. 전역 사용자 목록 표시, 현재 사용자에 체크 표시</td></tr>
+      <tr><td>PFR-02-02</td><td>사용자 전환</td><td>선택 시 <code>mg_current_user</code> 갱신 → 헤더 아바타 · 의견/채팅 입력 폼 즉시 재구성</td></tr>
+      <tr><td>PFR-02-03</td><td>사용자 생성</td><td>이름(필수) + 직책/부서(선택) 입력 → 생성 즉시 현재 사용자로 지정</td></tr>
+      <tr><td>PFR-02-04</td><td>아바타 규칙</td><td>이름 첫 글자 + <code>COLORS[users.length % 10]</code> 자동 색상 배정</td></tr>
+      <tr><td>PFR-02-05</td><td>외부 클릭 닫기</td><td>드롭다운 외 영역 클릭 시 자동 닫힘</td></tr>
     </tbody>
   </table>
   <div class="note"><p><strong>비고</strong> — 인증·인가 없음. 누구나 임의 사용자로 전환 가능한 데모용 계정 전환 모델.</p></div>
@@ -413,13 +413,13 @@
   <table class="wide">
     <thead><tr><th style="width:105px">ID</th><th style="width:150px">기능</th><th>상세</th></tr></thead>
     <tbody>
-      <tr><td>FR-03-01</td><td>업로드</td><td>이미지 파일 선택 → base64 변환 후 저장. 화면 이름 선택 입력</td></tr>
-      <tr><td>FR-03-02</td><td>개수 제한</td><td><strong>최대 3장.</strong> 3장 도달 시 업로드 영역 자동 숨김, 라벨에 <code>(n/3)</code> 표시</td></tr>
-      <tr><td>FR-03-03</td><td>파일 검증</td><td>MIME <code>image/*</code> 여부, 크기 5MB 이하 검사</td></tr>
-      <tr><td>FR-03-04</td><td>저장 실패 처리</td><td><code>QuotaExceededError</code> 감지 시 "저장 공간 부족" 전용 안내</td></tr>
-      <tr><td>FR-03-05</td><td>썸네일 그리드</td><td>3열 정사각 그리드, 하단 이름 오버레이, 호버 시 삭제 버튼 노출</td></tr>
-      <tr><td>FR-03-06</td><td>삭제</td><td>확인 대화상자 후 제거</td></tr>
-      <tr><td>FR-03-07</td><td>반영 힌트</td><td>생성 탭 하단에 <code>참조 화면 n개 스타일 반영</code> 안내 표시</td></tr>
+      <tr><td>PFR-03-01</td><td>업로드</td><td>이미지 파일 선택 → base64 변환 후 저장. 화면 이름 선택 입력</td></tr>
+      <tr><td>PFR-03-02</td><td>개수 제한</td><td><strong>최대 3장.</strong> 3장 도달 시 업로드 영역 자동 숨김, 라벨에 <code>(n/3)</code> 표시</td></tr>
+      <tr><td>PFR-03-03</td><td>파일 검증</td><td>MIME <code>image/*</code> 여부, 크기 5MB 이하 검사</td></tr>
+      <tr><td>PFR-03-04</td><td>저장 실패 처리</td><td><code>QuotaExceededError</code> 감지 시 "저장 공간 부족" 전용 안내</td></tr>
+      <tr><td>PFR-03-05</td><td>썸네일 그리드</td><td>3열 정사각 그리드, 하단 이름 오버레이, 호버 시 삭제 버튼 노출</td></tr>
+      <tr><td>PFR-03-06</td><td>삭제</td><td>확인 대화상자 후 제거</td></tr>
+      <tr><td>PFR-03-07</td><td>반영 힌트</td><td>생성 탭 하단에 <code>참조 화면 n개 스타일 반영</code> 안내 표시</td></tr>
     </tbody>
   </table>
   <h4>예외 처리</h4>
@@ -437,16 +437,16 @@
   <table class="wide">
     <thead><tr><th style="width:105px">ID</th><th style="width:150px">기능</th><th>상세</th></tr></thead>
     <tbody>
-      <tr><td>FR-04-01</td><td>입력</td><td>버전 메모(선택, 1줄) + 기획안 내용(<strong>필수</strong>, 14행, 예시 placeholder 제공)</td></tr>
-      <tr><td>FR-04-02</td><td>사전 검증</td><td>① 기획안 공백 여부 ② API 키 설정 여부</td></tr>
-      <tr><td>FR-04-03</td><td>생성 중 UI</td><td>중앙 영역을 스피너 화면으로 전환, 버튼 비활성화 + <code>생성 중...</code></td></tr>
-      <tr><td>FR-04-04</td><td>참조 반영 안내</td><td>참조화면 존재 시 <code>참조 화면 n개의 스타일을 분석 중입니다.</code> 표시</td></tr>
-      <tr><td>FR-04-05</td><td>AI 호출</td><td>참조 이미지 + 기획안을 멀티모달 메시지로 전송 (7절 참조)</td></tr>
-      <tr><td>FR-04-06</td><td>응답 후처리</td><td>html 코드펜스 감지 시 내부 내용만 추출</td></tr>
-      <tr><td>FR-04-07</td><td>버전 채번</td><td><code>max(기존 version) + 1</code>. 중간 버전 삭제 후에도 번호 충돌 없음</td></tr>
-      <tr><td>FR-04-08</td><td>저장 및 표시</td><td>목록 선두에 저장 → 즉시 선택·렌더 → 입력 필드 초기화</td></tr>
-      <tr><td>FR-04-09</td><td>완료 알림</td><td>토스트 <code>v{n} 목업이 생성됐습니다</code> (2.5초 후 소멸)</td></tr>
-      <tr><td>FR-04-10</td><td>실패 처리</td><td>빈 화면 복귀 + 생성 탭 재활성화 + <code>생성 실패: {메시지}</code> 인라인 표시</td></tr>
+      <tr><td>PFR-04-01</td><td>입력</td><td>버전 메모(선택, 1줄) + 기획안 내용(<strong>필수</strong>, 14행, 예시 placeholder 제공)</td></tr>
+      <tr><td>PFR-04-02</td><td>사전 검증</td><td>① 기획안 공백 여부 ② API 키 설정 여부</td></tr>
+      <tr><td>PFR-04-03</td><td>생성 중 UI</td><td>중앙 영역을 스피너 화면으로 전환, 버튼 비활성화 + <code>생성 중...</code></td></tr>
+      <tr><td>PFR-04-04</td><td>참조 반영 안내</td><td>참조화면 존재 시 <code>참조 화면 n개의 스타일을 분석 중입니다.</code> 표시</td></tr>
+      <tr><td>PFR-04-05</td><td>AI 호출</td><td>참조 이미지 + 기획안을 멀티모달 메시지로 전송 (7절 참조)</td></tr>
+      <tr><td>PFR-04-06</td><td>응답 후처리</td><td>html 코드펜스 감지 시 내부 내용만 추출</td></tr>
+      <tr><td>PFR-04-07</td><td>버전 채번</td><td><code>max(기존 version) + 1</code>. 중간 버전 삭제 후에도 번호 충돌 없음</td></tr>
+      <tr><td>PFR-04-08</td><td>저장 및 표시</td><td>목록 선두에 저장 → 즉시 선택·렌더 → 입력 필드 초기화</td></tr>
+      <tr><td>PFR-04-09</td><td>완료 알림</td><td>토스트 <code>v{n} 목업이 생성됐습니다</code> (2.5초 후 소멸)</td></tr>
+      <tr><td>PFR-04-10</td><td>실패 처리</td><td>빈 화면 복귀 + 생성 탭 재활성화 + <code>생성 실패: {메시지}</code> 인라인 표시</td></tr>
     </tbody>
   </table>
   <h4>예외 처리</h4>
@@ -463,13 +463,13 @@
   <table class="wide">
     <thead><tr><th style="width:105px">ID</th><th style="width:150px">기능</th><th>상세</th></tr></thead>
     <tbody>
-      <tr><td>FR-05-01</td><td>4단 상태</td><td><code>empty</code>(안내) / <code>generating</code>(스피너) / <code>mockup</code>(뷰어) / 툴바 표시 여부 연동</td></tr>
-      <tr><td>FR-05-02</td><td>렌더링</td><td><code>iframe srcdoc</code> 으로 HTML 문서 격리 렌더</td></tr>
-      <tr><td>FR-05-03</td><td>툴바 정보</td><td>버전 뱃지 <code>v{n}</code> + 버전 메모 표시</td></tr>
-      <tr><td>FR-05-04</td><td>뷰 모드</td><td><strong>데스크톱</strong>(최대 1280×800) ↔ <strong>모바일</strong>(390×844) 전환</td></tr>
-      <tr><td>FR-05-05</td><td>HTML 다운로드</td><td>Blob 생성 → <code>mockup-v{n}.html</code> 파일 저장</td></tr>
-      <tr><td>FR-05-06</td><td>우패널 토글</td><td>의견/채팅 패널 열기·닫기 (버튼 라벨·색상 연동, 데스크톱 전용)</td></tr>
-      <tr><td>FR-05-07</td><td>빈 상태 안내</td><td>데스크톱/모바일 각각 다른 문구 표시</td></tr>
+      <tr><td>PFR-05-01</td><td>4단 상태</td><td><code>empty</code>(안내) / <code>generating</code>(스피너) / <code>mockup</code>(뷰어) / 툴바 표시 여부 연동</td></tr>
+      <tr><td>PFR-05-02</td><td>렌더링</td><td><code>iframe srcdoc</code> 으로 HTML 문서 격리 렌더</td></tr>
+      <tr><td>PFR-05-03</td><td>툴바 정보</td><td>버전 뱃지 <code>v{n}</code> + 버전 메모 표시</td></tr>
+      <tr><td>PFR-05-04</td><td>뷰 모드</td><td><strong>데스크톱</strong>(최대 1280×800) ↔ <strong>모바일</strong>(390×844) 전환</td></tr>
+      <tr><td>PFR-05-05</td><td>HTML 다운로드</td><td>Blob 생성 → <code>mockup-v{n}.html</code> 파일 저장</td></tr>
+      <tr><td>PFR-05-06</td><td>우패널 토글</td><td>의견/채팅 패널 열기·닫기 (버튼 라벨·색상 연동, 데스크톱 전용)</td></tr>
+      <tr><td>PFR-05-07</td><td>빈 상태 안내</td><td>데스크톱/모바일 각각 다른 문구 표시</td></tr>
     </tbody>
   </table>
 
@@ -477,11 +477,11 @@
   <table class="wide">
     <thead><tr><th style="width:105px">ID</th><th style="width:150px">기능</th><th>상세</th></tr></thead>
     <tbody>
-      <tr><td>FR-06-01</td><td>목록</td><td>최신순. 버전 번호 · 메모 · 기획안 요약(2줄 말줄임) · 생성 일시(한국 로케일)</td></tr>
-      <tr><td>FR-06-02</td><td>선택</td><td>클릭 시 해당 버전 로드, 선택 항목에 좌측 인디고 보더 + 배경 강조</td></tr>
-      <tr><td>FR-06-03</td><td>삭제</td><td>확인 대화상자 → 목업 + 해당 버전 댓글 동시 삭제</td></tr>
-      <tr><td>FR-06-04</td><td>삭제 후 처리</td><td>삭제 대상이 현재 선택 버전이면 빈 화면으로 복귀</td></tr>
-      <tr><td>FR-06-05</td><td>빈 상태</td><td><code>아직 생성된 목업이 없습니다.</code></td></tr>
+      <tr><td>PFR-06-01</td><td>목록</td><td>최신순. 버전 번호 · 메모 · 기획안 요약(2줄 말줄임) · 생성 일시(한국 로케일)</td></tr>
+      <tr><td>PFR-06-02</td><td>선택</td><td>클릭 시 해당 버전 로드, 선택 항목에 좌측 인디고 보더 + 배경 강조</td></tr>
+      <tr><td>PFR-06-03</td><td>삭제</td><td>확인 대화상자 → 목업 + 해당 버전 댓글 동시 삭제</td></tr>
+      <tr><td>PFR-06-04</td><td>삭제 후 처리</td><td>삭제 대상이 현재 선택 버전이면 빈 화면으로 복귀</td></tr>
+      <tr><td>PFR-06-05</td><td>빈 상태</td><td><code>아직 생성된 목업이 없습니다.</code></td></tr>
     </tbody>
   </table>
 
@@ -489,11 +489,11 @@
   <table class="wide">
     <thead><tr><th style="width:105px">ID</th><th style="width:150px">기능</th><th>상세</th></tr></thead>
     <tbody>
-      <tr><td>FR-07-01</td><td>목록</td><td>아바타 · 이름 · 직책 표시</td></tr>
-      <tr><td>FR-07-02</td><td>추가</td><td>전역 사용자 중 <strong>미등록자만</strong> 셀렉트에 노출 → 추가</td></tr>
-      <tr><td>FR-07-03</td><td>제거</td><td>확인 대화상자 후 제거</td></tr>
-      <tr><td>FR-07-04</td><td>뱃지 동기화</td><td>추가·제거 시 탭 라벨 건수 즉시 갱신</td></tr>
-      <tr><td>FR-07-05</td><td>안내</td><td>새 사용자는 헤더 우상단에서 추가하도록 유도 문구 표시</td></tr>
+      <tr><td>PFR-07-01</td><td>목록</td><td>아바타 · 이름 · 직책 표시</td></tr>
+      <tr><td>PFR-07-02</td><td>추가</td><td>전역 사용자 중 <strong>미등록자만</strong> 셀렉트에 노출 → 추가</td></tr>
+      <tr><td>PFR-07-03</td><td>제거</td><td>확인 대화상자 후 제거</td></tr>
+      <tr><td>PFR-07-04</td><td>뱃지 동기화</td><td>추가·제거 시 탭 라벨 건수 즉시 갱신</td></tr>
+      <tr><td>PFR-07-05</td><td>안내</td><td>새 사용자는 헤더 우상단에서 추가하도록 유도 문구 표시</td></tr>
     </tbody>
   </table>
 
@@ -501,12 +501,12 @@
   <table class="wide">
     <thead><tr><th style="width:105px">ID</th><th style="width:150px">기능</th><th>상세</th></tr></thead>
     <tbody>
-      <tr><td>FR-08-01</td><td>범위</td><td><strong>목업 버전 단위.</strong> 버전 전환 시 해당 버전의 의견만 표시</td></tr>
-      <tr><td>FR-08-02</td><td>작성</td><td>아바타 + 텍스트영역. <strong>Enter 전송 / Shift+Enter 줄바꿈</strong></td></tr>
-      <tr><td>FR-08-03</td><td>표시</td><td>작성자 · 시간(오늘이면 시각, 아니면 월/일 + 시각) · 줄바꿈 보존</td></tr>
-      <tr><td>FR-08-04</td><td>삭제</td><td><strong>본인 작성 건에만</strong> 삭제 버튼 노출</td></tr>
-      <tr><td>FR-08-05</td><td>자동 스크롤</td><td>작성 직후 목록 최하단으로 이동</td></tr>
-      <tr><td>FR-08-06</td><td>가드</td><td>목업 미선택 / 사용자 미선택 시 각각 안내 문구 표시 및 입력 차단</td></tr>
+      <tr><td>PFR-08-01</td><td>범위</td><td><strong>목업 버전 단위.</strong> 버전 전환 시 해당 버전의 의견만 표시</td></tr>
+      <tr><td>PFR-08-02</td><td>작성</td><td>아바타 + 텍스트영역. <strong>Enter 전송 / Shift+Enter 줄바꿈</strong></td></tr>
+      <tr><td>PFR-08-03</td><td>표시</td><td>작성자 · 시간(오늘이면 시각, 아니면 월/일 + 시각) · 줄바꿈 보존</td></tr>
+      <tr><td>PFR-08-04</td><td>삭제</td><td><strong>본인 작성 건에만</strong> 삭제 버튼 노출</td></tr>
+      <tr><td>PFR-08-05</td><td>자동 스크롤</td><td>작성 직후 목록 최하단으로 이동</td></tr>
+      <tr><td>PFR-08-06</td><td>가드</td><td>목업 미선택 / 사용자 미선택 시 각각 안내 문구 표시 및 입력 차단</td></tr>
     </tbody>
   </table>
   <h4>빈 상태 문구</h4>
@@ -523,12 +523,12 @@
   <table class="wide">
     <thead><tr><th style="width:105px">ID</th><th style="width:150px">기능</th><th>상세</th></tr></thead>
     <tbody>
-      <tr><td>FR-09-01</td><td>범위</td><td><strong>프로젝트 단위.</strong> 버전과 무관하게 하나의 대화 스레드</td></tr>
-      <tr><td>FR-09-02</td><td>말풍선 UI</td><td>본인 메시지는 우측 정렬 + 인디고 배경, 타인은 좌측 + 회색 배경</td></tr>
-      <tr><td>FR-09-03</td><td>발신자 표시</td><td>타인 메시지에만 이름 라벨 노출</td></tr>
-      <tr><td>FR-09-04</td><td>전송</td><td>폼 제출 (Enter 전송)</td></tr>
-      <tr><td>FR-09-05</td><td>자동 스크롤</td><td>렌더 및 전송 시 최하단 유지</td></tr>
-      <tr><td>FR-09-06</td><td>가드</td><td>사용자 미선택 시 입력 폼 숨김 + 안내 문구</td></tr>
+      <tr><td>PFR-09-01</td><td>범위</td><td><strong>프로젝트 단위.</strong> 버전과 무관하게 하나의 대화 스레드</td></tr>
+      <tr><td>PFR-09-02</td><td>말풍선 UI</td><td>본인 메시지는 우측 정렬 + 인디고 배경, 타인은 좌측 + 회색 배경</td></tr>
+      <tr><td>PFR-09-03</td><td>발신자 표시</td><td>타인 메시지에만 이름 라벨 노출</td></tr>
+      <tr><td>PFR-09-04</td><td>전송</td><td>폼 제출 (Enter 전송)</td></tr>
+      <tr><td>PFR-09-05</td><td>자동 스크롤</td><td>렌더 및 전송 시 최하단 유지</td></tr>
+      <tr><td>PFR-09-06</td><td>가드</td><td>사용자 미선택 시 입력 폼 숨김 + 안내 문구</td></tr>
     </tbody>
   </table>
 
@@ -537,16 +537,16 @@
   <table class="wide">
     <thead><tr><th style="width:105px">ID</th><th style="width:150px">기능</th><th>상세</th></tr></thead>
     <tbody>
-      <tr><td>FR-10-01</td><td>사전 검증</td><td>목업 선택 여부 · API 키 설정 여부 (미충족 시 토스트)</td></tr>
-      <tr><td>FR-10-02</td><td>모달 오픈</td><td>전체화면 모달 + 진행 상태 메시지 표시</td></tr>
-      <tr><td>FR-10-03</td><td><strong>1단계 캡처</strong></td><td>DOMParser로 목업 HTML 파싱 → style 추출 + body 내용을 화면 밖 390px 컨테이너에 재구성 → html2canvas로 PNG 캡처 → base64 반환</td></tr>
-      <tr><td>FR-10-04</td><td>진행 안내</td><td><code>목업 화면을 캡처하고 있습니다...</code> → <code>AI가 기획서를 작성하고 있습니다...</code></td></tr>
-      <tr><td>FR-10-05</td><td><strong>2단계 작성</strong></td><td>기획안 텍스트 + 캡처 이미지를 AI에 전달, 한국어 7섹션 기획서 HTML 요청</td></tr>
-      <tr><td>FR-10-06</td><td>이미지 삽입</td><td>응답 내 <code>__MOCKUP__</code> 플레이스홀더를 base64 이미지로 치환</td></tr>
-      <tr><td>FR-10-07</td><td>폴백</td><td>플레이스홀더 누락 시 body 종료 직전에 이미지 블록 자동 추가</td></tr>
-      <tr><td>FR-10-08</td><td>미리보기</td><td>샌드박스 iframe으로 결과 렌더, 부제에 <code>v{n} — {메모}</code> 표시</td></tr>
-      <tr><td>FR-10-09</td><td>다운로드</td><td><code>기획서-v{n}.html</code> 파일 저장</td></tr>
-      <tr><td>FR-10-10</td><td>실패 처리</td><td>모달 닫고 토스트 <code>기획서 생성 실패: {메시지}</code></td></tr>
+      <tr><td>PFR-10-01</td><td>사전 검증</td><td>목업 선택 여부 · API 키 설정 여부 (미충족 시 토스트)</td></tr>
+      <tr><td>PFR-10-02</td><td>모달 오픈</td><td>전체화면 모달 + 진행 상태 메시지 표시</td></tr>
+      <tr><td>PFR-10-03</td><td><strong>1단계 캡처</strong></td><td>DOMParser로 목업 HTML 파싱 → style 추출 + body 내용을 화면 밖 390px 컨테이너에 재구성 → html2canvas로 PNG 캡처 → base64 반환</td></tr>
+      <tr><td>PFR-10-04</td><td>진행 안내</td><td><code>목업 화면을 캡처하고 있습니다...</code> → <code>AI가 기획서를 작성하고 있습니다...</code></td></tr>
+      <tr><td>PFR-10-05</td><td><strong>2단계 작성</strong></td><td>기획안 텍스트 + 캡처 이미지를 AI에 전달, 한국어 7섹션 기획서 HTML 요청</td></tr>
+      <tr><td>PFR-10-06</td><td>이미지 삽입</td><td>응답 내 <code>__MOCKUP__</code> 플레이스홀더를 base64 이미지로 치환</td></tr>
+      <tr><td>PFR-10-07</td><td>폴백</td><td>플레이스홀더 누락 시 body 종료 직전에 이미지 블록 자동 추가</td></tr>
+      <tr><td>PFR-10-08</td><td>미리보기</td><td>샌드박스 iframe으로 결과 렌더, 부제에 <code>v{n} — {메모}</code> 표시</td></tr>
+      <tr><td>PFR-10-09</td><td>다운로드</td><td><code>기획서-v{n}.html</code> 파일 저장</td></tr>
+      <tr><td>PFR-10-10</td><td>실패 처리</td><td>모달 닫고 토스트 <code>기획서 생성 실패: {메시지}</code></td></tr>
     </tbody>
   </table>
   <h4>기획서 구성 (AI 지시 사항)</h4>
@@ -568,13 +568,13 @@
   <table class="wide">
     <thead><tr><th style="width:105px">ID</th><th style="width:150px">기능</th><th>상세</th></tr></thead>
     <tbody>
-      <tr><td>FR-11-01</td><td>하단 5탭</td><td>생성 / 히스토리 / 의견 / 채팅 / 담당자</td></tr>
-      <tr><td>FR-11-02</td><td>바텀시트</td><td>좌·우 패널이 하단에서 슬라이드 업 (최대 높이 72vh, 상단 라운드 20px)</td></tr>
-      <tr><td>FR-11-03</td><td>상호 배타</td><td>좌 패널 열면 우 패널 자동 닫힘 (동시 노출 방지)</td></tr>
-      <tr><td>FR-11-04</td><td>토글</td><td>활성 탭 재탭 시 닫힘</td></tr>
-      <tr><td>FR-11-05</td><td>닫기 수단</td><td>오버레이 탭 / 아래로 60px 이상 스와이프</td></tr>
-      <tr><td>FR-11-06</td><td>자동 닫기</td><td>목업 선택 시 패널 자동 닫힘 (결과 즉시 확인)</td></tr>
-      <tr><td>FR-11-07</td><td>안전 영역</td><td><code>env(safe-area-inset-bottom)</code> 반영</td></tr>
+      <tr><td>PFR-11-01</td><td>하단 5탭</td><td>생성 / 히스토리 / 의견 / 채팅 / 담당자</td></tr>
+      <tr><td>PFR-11-02</td><td>바텀시트</td><td>좌·우 패널이 하단에서 슬라이드 업 (최대 높이 72vh, 상단 라운드 20px)</td></tr>
+      <tr><td>PFR-11-03</td><td>상호 배타</td><td>좌 패널 열면 우 패널 자동 닫힘 (동시 노출 방지)</td></tr>
+      <tr><td>PFR-11-04</td><td>토글</td><td>활성 탭 재탭 시 닫힘</td></tr>
+      <tr><td>PFR-11-05</td><td>닫기 수단</td><td>오버레이 탭 / 아래로 60px 이상 스와이프</td></tr>
+      <tr><td>PFR-11-06</td><td>자동 닫기</td><td>목업 선택 시 패널 자동 닫힘 (결과 즉시 확인)</td></tr>
+      <tr><td>PFR-11-07</td><td>안전 영역</td><td><code>env(safe-area-inset-bottom)</code> 반영</td></tr>
     </tbody>
   </table>
 </section>

@@ -20,6 +20,7 @@
       "desc": "구현에 필요한 명세와 규범을 확인합니다",
       "docs": [
         "개발문서/03_IA_FUNCTION_SPEC.md",
+        "개발문서/기능명세/00_INDEX.md",
         "개발문서/04_SYSTEM_ARCHITECTURE.md",
         "개발문서/05_API_DB_SPEC.md",
         "개발문서/06_DEVELOPMENT_BACKLOG.md",
@@ -61,7 +62,7 @@
         },
         {
           "path": "개발문서/03_IA_FUNCTION_SPEC.md",
-          "title": "03 · IA & 기능명세",
+          "title": "03 · IA & 화면",
           "note": "화면 S01~S07 · 상태 모델"
         },
         {
@@ -92,13 +93,84 @@
       ]
     },
     {
+      "id": "fspec",
+      "label": "기능명세",
+      "docs": [
+        {
+          "path": "개발문서/기능명세/00_INDEX.md",
+          "title": "기능명세 인덱스",
+          "note": "FR ↔ US ↔ 화면 ↔ API ↔ 백로그 추적 매트릭스"
+        },
+        {
+          "path": "개발문서/기능명세/FR-01_인증권한.md",
+          "title": "FR-01 · 인증/권한",
+          "note": "사내 SSO · 프로젝트 단위 접근권한"
+        },
+        {
+          "path": "개발문서/기능명세/FR-02_프로젝트.md",
+          "title": "FR-02 · 프로젝트",
+          "note": "프로젝트 · 멤버 · 상태 관리"
+        },
+        {
+          "path": "개발문서/기능명세/FR-03_참고자료.md",
+          "title": "FR-03 · 참고자료",
+          "note": "파일 업로드 · AI 참조 대상 선택"
+        },
+        {
+          "path": "개발문서/기능명세/FR-04_템플릿.md",
+          "title": "FR-04 · Template",
+          "note": "NH 공통 · 개인/부서 Template"
+        },
+        {
+          "path": "개발문서/기능명세/FR-05_AI제작.md",
+          "title": "FR-05 · AI 제작",
+          "note": "비동기 AI Job · Orchestrator 경유 생성"
+        },
+        {
+          "path": "개발문서/기능명세/FR-06_협업의견.md",
+          "title": "FR-06 · 협업",
+          "note": "결과물 의견 등록 · 담당자 지정"
+        },
+        {
+          "path": "개발문서/기능명세/FR-07_AI의견취합.md",
+          "title": "FR-07 · AI 의견 취합",
+          "note": "합의 / 이견 / 추가확인 분류"
+        },
+        {
+          "path": "개발문서/기능명세/FR-08_반영결정.md",
+          "title": "FR-08 · 반영 결정",
+          "note": "반영 / 보류 / 반려 — 사람이 확정"
+        },
+        {
+          "path": "개발문서/기능명세/FR-09_버전관리.md",
+          "title": "FR-09 · Version",
+          "note": "스냅샷 · 부모 관계 · 비교"
+        },
+        {
+          "path": "개발문서/기능명세/FR-10_히스토리.md",
+          "title": "FR-10 · History",
+          "note": "행위 · 의사결정 시간순 기록"
+        },
+        {
+          "path": "개발문서/기능명세/FR-11_Export.md",
+          "title": "FR-11 · Export",
+          "note": "업무파일 생성 · Version 연결"
+        },
+        {
+          "path": "개발문서/기능명세/FR-12_감사추적.md",
+          "title": "FR-12 · 감사 추적",
+          "note": "인증 · 권한 · AI 호출 감사 이벤트"
+        }
+      ]
+    },
+    {
       "id": "proto",
       "label": "프로토타입",
       "docs": [
         {
           "path": "MockupGen_기능명세서.md",
           "title": "MockupGen 기능명세서",
-          "note": "mockup/ Next.js 앱 역공학 명세 · P0~P3 이슈"
+          "note": "정적 프로토타입 역공학 명세 · PFR-xx · P0~P3 이슈"
         }
       ]
     },

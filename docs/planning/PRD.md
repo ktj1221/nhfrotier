@@ -13,7 +13,8 @@
 |---|---|
 | 제품 목표, 사용자, 기능 범위, MVP, 비기능 요구사항 | [개발문서/01_PRD.md](../../개발문서/01_PRD.md) |
 | Epic / User Story / 인수조건(AC) / 우선순위 | [개발문서/02_USER_STORIES_AC.md](../../개발문서/02_USER_STORIES_AC.md) |
-| IA, 화면 구조, 기능 상세, 주요 상태 | [개발문서/03_IA_FUNCTION_SPEC.md](../../개발문서/03_IA_FUNCTION_SPEC.md) |
+| 기능별 상세 명세(FR-01~12), FR ↔ US ↔ 화면 ↔ API 추적 | [개발문서/기능명세/00_INDEX.md](../../개발문서/기능명세/00_INDEX.md) |
+| IA, 화면 구조, 주요 상태 | [개발문서/03_IA_FUNCTION_SPEC.md](../../개발문서/03_IA_FUNCTION_SPEC.md) |
 | 시스템 구조, LLM 연계, 비동기 처리 | [개발문서/04_SYSTEM_ARCHITECTURE.md](../../개발문서/04_SYSTEM_ARCHITECTURE.md) |
 | API 초안, 도메인 모델, 테이블 | [개발문서/05_API_DB_SPEC.md](../../개발문서/05_API_DB_SPEC.md) |
 | Sprint 분할, 개발 티켓, 완료 기준 | [개발문서/06_DEVELOPMENT_BACKLOG.md](../../개발문서/06_DEVELOPMENT_BACKLOG.md) |

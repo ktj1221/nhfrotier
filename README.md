@@ -4,7 +4,7 @@ AI 기반 NH 업무 제작 · 협의 · 의사결정 자산화 플랫폼 (프로
 
 ## 📘 문서 허브
 
-아래 문서 14개를 검색·역할별 진입점과 함께 한 페이지에서 봅니다. 나루뱅크 디자인 시스템을 적용했습니다.
+아래 문서 27개를 검색·역할별 진입점과 함께 한 페이지에서 봅니다. 나루뱅크 디자인 시스템을 적용했습니다.
 
 **→ https://claude.ai/code/artifact/f2d7cb0d-3788-445d-8dbd-2e9cfb64b4d4**
 
@@ -29,7 +29,8 @@ Node.js 18 이상이면 되고 설치할 패키지는 없습니다. 디자인 �
 | [개발문서/README.md](개발문서/README.md) | 개발 문서 패키지 목차 · 권장 개발 순서 |
 | [개발문서/01_PRD.md](개발문서/01_PRD.md) | **PRD 정본** — 제품 목표, 사용자, 기능 범위, MVP, 비기능 요구사항 |
 | [개발문서/02_USER_STORIES_AC.md](개발문서/02_USER_STORIES_AC.md) | Epic / User Story / 인수조건 / 우선순위 |
-| [개발문서/03_IA_FUNCTION_SPEC.md](개발문서/03_IA_FUNCTION_SPEC.md) | IA, 화면 구조, 기능 상세 |
+| [개발문서/03_IA_FUNCTION_SPEC.md](개발문서/03_IA_FUNCTION_SPEC.md) | IA, 화면 구조, 주요 상태 |
+| [개발문서/기능명세/00_INDEX.md](개발문서/기능명세/00_INDEX.md) | **기능별 상세 명세(FR-01~12)** · FR ↔ US ↔ 화면 ↔ API 추적 매트릭스 |
 | [개발문서/04_SYSTEM_ARCHITECTURE.md](개발문서/04_SYSTEM_ARCHITECTURE.md) | 시스템 구조, LLM 연계, 비동기 처리 |
 | [개발문서/05_API_DB_SPEC.md](개발문서/05_API_DB_SPEC.md) | API 초안, 도메인 모델, 테이블 |
 | [개발문서/06_DEVELOPMENT_BACKLOG.md](개발문서/06_DEVELOPMENT_BACKLOG.md) | Sprint 분할, 개발 티켓, 완료 기준 |

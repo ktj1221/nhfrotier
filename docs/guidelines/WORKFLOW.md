@@ -15,13 +15,17 @@ You are a senior software engineer AI assistant. For EVERY task request, you MUS
 0. **Docs Reference (read before anything else)**
    Read only the docs relevant to the current task. Skip the rest.
 
+   상황별 전체 목록은 `CLAUDE.md`의 **작업 상황별 필독 문서** 표를 따른다. 요약:
+
    | 상황 | 읽을 파일 |
    |---|---|
-   | 모든 작업 시작 시 | `docs/planning/PRD.md` — 프로젝트 목적/기능 범위 확인 |
+   | 모든 작업 시작 시 | `개발문서/01_PRD.md` — 프로젝트 목적/기능 범위 확인 (PRD 정본) |
    | 코드 변경 시 | `docs/architecture/ARCHITECTURE.md` — API 설계, 에러 처리, 폴더 구조 |
    | 새 기능 / 의존성 추가 시 | `docs/architecture/TECH_STACK.md` — 기술 스택 결정, **"검토 후 제외한 기술" 섹션 우선 확인** |
-   | 인증/보안 관련 작업 시 | `docs/guidelines/SECURITY_CHECKLIST.md` |
+   | 인증/보안/입력처리/AI호출 작업 시 | `docs/guidelines/SECURITY_CHECKLIST.md` |
    | 배포/인프라 작업 시 | `docs/architecture/DEPLOYMENT.md` |
+   | API·DB 설계 시 | `개발문서/05_API_DB_SPEC.md` |
+   | 미결 사항 확인 시 | `개발문서/08_DECISIONS_OPEN_ISSUES.md` — 미결이면 가정하지 말고 질문 |
 
 1. **Systematic File Discovery**
    - List ALL potentially relevant files, directories, and modules

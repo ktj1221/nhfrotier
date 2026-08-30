@@ -4,22 +4,9 @@
 
 ## PRD (Product Requirements Document)
 
-> 프로젝트 시작 시 아래 항목을 채워넣을 것. 작성된 PRD는 `docs/planning/PRD.md`에 저장할 것.
-
-### 프로젝트 목적
-<!-- 이 프로젝트가 해결하려는 문제와 핵심 목적 -->
-
-### 핵심 기능
-<!-- 반드시 구현해야 할 기능 목록 -->
-
-### 타겟 사용자
-<!-- 누가 이 서비스를 사용하는가 -->
-
-### 성공 지표
-<!-- 어떻게 되면 성공인가 -->
-
-### Out of Scope
-<!-- 이번 프로젝트에서 하지 않을 것들 -->
+> **PRD 정본은 `개발문서/01_PRD.md`다.** 제품 목표·사용자·기능 범위·MVP·비기능 요구사항은 모두 여기에 있다.
+> `docs/planning/PRD.md`는 정본을 가리키는 문서 지도이며, PRD 내용을 옮겨 적지 말 것.
+> 기능·우선순위가 바뀌면 `개발문서/01_PRD.md`와 `개발문서/02_USER_STORIES_AC.md`를 수정할 것.
 
 ---
 
@@ -47,8 +34,11 @@
 
 - 코드 작성 후 **로컬에서 먼저 테스트**할 것. 테스트 없이 프로덕션(master push)으로 넘기지 말 것.
 - 순서: 코드 작성 → 로컬 테스트 → 사용자 확인 → master push
-- 로컬 실행 방법:
-  <!-- 프로젝트 구조 확정 후 작성 -->
+- 로컬 실행 방법 (프로토타입 `mockup/`):
+  ```bash
+  cd mockup && npm install && npm run dev   # http://localhost:3000
+  ```
+  환경변수·초기화·트러블슈팅은 @docs/architecture/DEPLOYMENT.md 참고.
 
 ---
 
@@ -131,6 +121,37 @@
 
 ---
 
+## 작업 상황별 필독 문서
+
+작업을 시작하기 전, 아래 표에서 **현재 작업에 해당하는 행의 문서를 먼저 읽고 그 가이드라인을 지킬 것.** 해당 없는 문서는 읽지 말 것.
+
+| 작업 상황 | 필독 문서 | 무엇을 확인하는가 |
+|---|---|---|
+| **모든 작업 시작 시** | `개발문서/01_PRD.md` | 이 작업이 제품 범위·MVP 안에 있는지 |
+| **코드 변경 / 새 기능 구현** | @docs/architecture/ARCHITECTURE.md | 계층 분리, API 규약(`/api/v1`), 에러 코드 체계, 폴더 구조 |
+| **새 패키지·라이브러리 추가** | @docs/architecture/TECH_STACK.md | **"C. 검토 후 제외한 기술" 표를 먼저 확인.** 이미 제외된 기술이면 도입하지 말 것 |
+| **인증/인가 코드 작성** | @docs/guidelines/SECURITY_CHECKLIST.md | 결정된 인증 방식, 권한 검증 위치 |
+| **외부 입력·DB 쿼리·파일 업로드 처리** | @docs/guidelines/SECURITY_CHECKLIST.md 0절 | 입력 검증, 파라미터 바인딩, IDOR 검증, 파일 확장자·용량 정책 |
+| **AI/LLM 호출 코드 작성** | @docs/guidelines/SECURITY_CHECKLIST.md + @docs/architecture/ARCHITECTURE.md 2·3절 | credential은 서버 측에서만. 브라우저 직접 호출 금지 |
+| **AI 생성 HTML을 화면에 렌더링** | @docs/guidelines/SECURITY_CHECKLIST.md 4절 | 샌드박스 iframe 격리. `allow-same-origin`과 `allow-scripts` 동시 부여 금지 |
+| **개인정보 저장·표시** | @docs/guidelines/SECURITY.md 5절 | 최소 수집, 화면 마스킹, 파기 절차 |
+| **로그 작성** | @docs/guidelines/SECURITY.md 6절 | 비밀번호·토큰·API 키·개인정보 원문 로깅 금지 |
+| **배포 / 환경변수 / 인프라 작업** | @docs/architecture/DEPLOYMENT.md | 실행 절차, 환경변수 키 목록, 배포 전 승인 체크리스트 |
+| **API·DB 스키마 설계** | `개발문서/05_API_DB_SPEC.md` | 기존 엔드포인트·테이블 규약, Version/History 모델 |
+| **화면·기능 상세 확인** | `개발문서/03_IA_FUNCTION_SPEC.md` | IA, 화면 구조, 주요 상태 |
+| **테스트 작성 / 기능 완료 점검** | `개발문서/07_QA_SECURITY_OPERATIONS.md` | 기능·보안·AI 품질 테스트 항목 |
+| **"이거 왜 이렇게 되어 있지?" 의문이 들 때** | `개발문서/08_DECISIONS_OPEN_ISSUES.md` | 결정사항과 미결사항. 미결이면 임의로 정하지 말고 질문할 것 |
+
+### 지킬 것
+
+- 위 문서의 결정사항과 **충돌하는 코드를 작성하지 말 것.** 충돌이 불가피하면 코드를 쓰기 전에 사용자에게 알리고 문서를 먼저 고칠 것.
+- 문서에 **미결(❓)로 표시된 사항은 임의로 가정하고 진행하지 말 것.** 사용자에게 질문할 것.
+- 결정이 새로 내려지면 코드보다 **문서를 먼저 갱신**할 것. (아래 `문서 자동 관리 규칙`)
+- `mockup/`은 검증용 프로토타입이다. 여기 코드를 운영 기준으로 삼거나 운영 스택으로 이식하지 말 것. (@docs/architecture/TECH_STACK.md 0절)
+- `mockup/` 안에서 작업할 때는 `mockup/AGENTS.md`도 따를 것 — Next.js 16은 이전 버전과 API가 다르므로 `mockup/node_modules/next/dist/docs/`의 해당 가이드를 먼저 확인할 것.
+
+---
+
 ## 코딩 원칙
 > 클린 코드 가이드라인은 @docs/guidelines/CLEAN_CODE.md 참고.
 > 작업 진행 프로세스(3단계 워크플로우)는 @docs/guidelines/WORKFLOW.md 참고.
@@ -205,10 +226,15 @@
 
 아래 상황이 발생하면 **대화 중 즉시** 해당 파일을 업데이트할 것. 작업 완료 후 별도로 하지 말 것.
 
-#### `docs/planning/PRD.md`
+#### `개발문서/01_PRD.md` · `개발문서/02_USER_STORIES_AC.md` (PRD 정본)
 - **업데이트 시점**: 기능 추가/변경/제거, 우선순위 변경, 페르소나/유저스토리 변경 시
-- **기록 대상**: 기능 목록, 우선순위(P0/P1/P2), 비기능 요구사항, Out of Scope
+- **기록 대상**: 기능 목록, 우선순위(P0/P1/P2), 비기능 요구사항, Out of Scope, User Story와 인수조건
 - **원칙**: 결정이 바뀌면 이전 내용을 지우지 말고 ~~취소선~~으로 남기고 새 내용 추가
+- **주의**: `docs/planning/PRD.md`는 문서 지도(포인터)일 뿐이다. PRD 내용을 그쪽에 옮겨 적지 말 것
+
+#### `개발문서/08_DECISIONS_OPEN_ISSUES.md`
+- **업데이트 시점**: 미결 사항이 결정되거나, 새로운 협의 필요 항목이 생겼을 때
+- **기록 대상**: 결정사항 표, 협의 필요 항목, 제품 의사결정 근거
 
 #### `docs/architecture/ARCHITECTURE.md`
 - **업데이트 시점**: API 설계 변경, 에러 처리 전략 변경, 폴더 구조 변경, 렌더링 방식 변경 시

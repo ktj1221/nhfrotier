@@ -1,65 +1,41 @@
 # PRD (Product Requirements Document)
 
-## 프로젝트 개요
-<!-- 프로젝트의 목적과 핵심 가치를 작성 -->
+> ⚠️ **이 문서는 포인터입니다. PRD 정본은 [개발문서/01_PRD.md](../../개발문서/01_PRD.md)입니다.**
+>
+> 제품 목표·사용자·문제 정의·기능 범위·MVP·비기능 요구사항은 모두 정본에 있습니다.
+> **PRD 내용을 이 파일에 옮겨 적지 마십시오.** 두 벌이 되면 반드시 한쪽이 낡습니다.
 
 ---
 
-## 핵심 기능
+## 정본 문서 지도
 
-### P0 (MVP 필수)
-<!-- 반드시 구현해야 할 기능 -->
+| 알고 싶은 것 | 문서 |
+|---|---|
+| 제품 목표, 사용자, 기능 범위, MVP, 비기능 요구사항 | [개발문서/01_PRD.md](../../개발문서/01_PRD.md) |
+| Epic / User Story / 인수조건(AC) / 우선순위 | [개발문서/02_USER_STORIES_AC.md](../../개발문서/02_USER_STORIES_AC.md) |
+| IA, 화면 구조, 기능 상세, 주요 상태 | [개발문서/03_IA_FUNCTION_SPEC.md](../../개발문서/03_IA_FUNCTION_SPEC.md) |
+| 시스템 구조, LLM 연계, 비동기 처리 | [개발문서/04_SYSTEM_ARCHITECTURE.md](../../개발문서/04_SYSTEM_ARCHITECTURE.md) |
+| API 초안, 도메인 모델, 테이블 | [개발문서/05_API_DB_SPEC.md](../../개발문서/05_API_DB_SPEC.md) |
+| Sprint 분할, 개발 티켓, 완료 기준 | [개발문서/06_DEVELOPMENT_BACKLOG.md](../../개발문서/06_DEVELOPMENT_BACKLOG.md) |
+| 테스트·보안·운영 체크리스트 | [개발문서/07_QA_SECURITY_OPERATIONS.md](../../개발문서/07_QA_SECURITY_OPERATIONS.md) |
+| 결정사항 / 미결사항 / 협의 필요 항목 | [개발문서/08_DECISIONS_OPEN_ISSUES.md](../../개발문서/08_DECISIONS_OPEN_ISSUES.md) |
+| 사업 기획안 원본 | [docs/NH뚝딱협업스튜디오_기획안.md](../NH뚝딱협업스튜디오_기획안.md) |
 
-### P1 (MVP 이후)
-<!-- 중요하지만 MVP 이후 구현할 기능 -->
+## 개발 가이드라인 (이 저장소가 관리하는 문서)
 
-## 기술 제약
-<!-- 예: 무료 API만 사용, 특정 플랫폼 제한 등 -->
-
-## 비기능 요구사항
-<!-- 응답속도, 동시접속자 수, 가용성 등 -->
-
-## 핵심 가치
-<!-- 이 서비스가 제공하는 가장 중요한 가치 -->
-
-## 성공 지표
-<!-- 어떻게 되면 성공인가 -->
-
----
-
-## 인증/접근 방식
-<!-- 로그인 방식, 접근 권한 등 -->
-
----
-
-## 사용자 유형 (페르소나)
-<!-- 각 페르소나별: 역할, 기술 수준, 주 사용 환경, Pain Point -->
+| 상황 | 문서 |
+|---|---|
+| 아키텍처 결정과 그 이유 | [docs/architecture/ARCHITECTURE.md](../architecture/ARCHITECTURE.md) |
+| 기술 선택 이유, **검토 후 제외한 기술** | [docs/architecture/TECH_STACK.md](../architecture/TECH_STACK.md) |
+| 실행 방법, 환경변수, 배포, 트러블슈팅 | [docs/architecture/DEPLOYMENT.md](../architecture/DEPLOYMENT.md) |
+| 보안 결정·ISMS-P 대응 현황 | [docs/guidelines/SECURITY_CHECKLIST.md](../guidelines/SECURITY_CHECKLIST.md) |
+| 보안 규칙 원문 (ISMS-P) | [docs/guidelines/SECURITY.md](../guidelines/SECURITY.md) |
+| 클린 코드 원칙 | [docs/guidelines/CLEAN_CODE.md](../guidelines/CLEAN_CODE.md) |
+| 작업 진행 프로세스 | [docs/guidelines/WORKFLOW.md](../guidelines/WORKFLOW.md) |
 
 ---
 
-## Out of Scope (MVP)
-<!-- 이번 프로젝트에서 하지 않을 것들 -->
+## 기능·우선순위가 바뀌면
 
----
-
-## 유저스토리
-<!-- 나는 [페르소나]로서, [목적]을 위해 [기능]을 원한다. -->
-
----
-
-## 기술 스택
-
-### 프론트엔드
-| 항목 | 선택 | 버전 |
-|------|------|------|
-
-### 백엔드
-| 항목 | 선택 | 버전 |
-|------|------|------|
-
-### 인프라
-| 항목 | 로컬 | 배포 |
-|------|------|------|
-
-## 미결 항목
-<!-- 아직 결정되지 않은 사항들 -->
+[개발문서/01_PRD.md](../../개발문서/01_PRD.md)와 [개발문서/02_USER_STORIES_AC.md](../../개발문서/02_USER_STORIES_AC.md)를 수정합니다.
+이전 내용은 지우지 말고 ~~취소선~~으로 남기고 새 내용을 추가합니다.

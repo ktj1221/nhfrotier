@@ -20,6 +20,7 @@
       "desc": "구현에 필요한 명세와 규범을 확인합니다",
       "docs": [
         "개발문서/03_IA_FUNCTION_SPEC.md",
+        "개발문서/09_UI_SPEC_브랜드시안.md",
         "개발문서/기능명세/00_INDEX.md",
         "개발문서/04_SYSTEM_ARCHITECTURE.md",
         "개발문서/05_API_DB_SPEC.md",
@@ -53,7 +54,7 @@
         {
           "path": "개발문서/01_PRD.md",
           "title": "01 · PRD",
-          "note": "제품 목표 · 범위 · FR-01~12"
+          "note": "제품 목표 · 범위 · FR-01~13"
         },
         {
           "path": "개발문서/02_USER_STORIES_AC.md",
@@ -89,6 +90,11 @@
           "path": "개발문서/08_DECISIONS_OPEN_ISSUES.md",
           "title": "08 · 결정 & 미결",
           "note": "확정 사항 · 협의 필요 항목"
+        },
+        {
+          "path": "개발문서/09_UI_SPEC_브랜드시안.md",
+          "title": "09 · 브랜드 시안 화면",
+          "note": "S08 · S09 화면 상세 명세"
         }
       ]
     },
@@ -165,6 +171,11 @@
           "path": "개발문서/기능명세/FR-12_감사추적.md",
           "title": "FR-12 · 감사 추적",
           "note": "인증 · 권한 · AI 호출 감사 이벤트"
+        },
+        {
+          "path": "개발문서/기능명세/FR-13_브랜드시안제작.md",
+          "title": "FR-13 · 브랜드 시안 제작",
+          "note": "카드 · 홍보물 컨셉 시안 · 3안 비교"
         }
       ]
     },

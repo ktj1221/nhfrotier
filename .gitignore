@@ -10,6 +10,17 @@ mockup/claude_test/
 # 빌드는 design-system/tokens/ 만 사용하므로 없어도 동작한다.
 design-system/uploads/
 
+# 디자인 자산 갤러리에 넣는 실물 이미지(올원뱅크·기업뱅킹·NH 로고/화면).
+# 위와 같은 이유 — main/dev 루트가 GitHub Pages 로 공개 서빙되므로 커밋하지 않는다.
+# 파일이 없으면 AssetThumb 이 대체본을 그리므로 화면은 그대로 동작한다.
+mockup/public/assets/nh/*
+!mockup/public/assets/nh/README.md
+
+# 외부 서비스 UI 참고 캡처(Genspark 등). 화면 안에 사내 북마크·계정명이 함께 찍혀 있고,
+# 위와 같은 이유로 저장소 루트가 GitHub Pages 로 공개 서빙되므로 커밋하지 않는다.
+reference/ui/**
+!reference/ui/README.md
+
 # OS
 Thumbs.db
 .DS_Store

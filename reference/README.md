@@ -10,6 +10,8 @@
 | `scripts/build-docs-site.mjs` | 저장소 마크다운 → 데이터 | 개발 |
 | `프로젝트문서.html` | 둘을 합친 산출물 | **아무도 직접 고치지 않는다** |
 
+`ui/` 는 화면 리디자인 참고용 외부 UI 캡처 보관소다. 정본이 아니며 이미지는 커밋하지 않는다 — `reference/ui/README.md` 참고.
+
 빌드는 `doc-hub.html` 의 `/* DATA:BEGIN */` ~ `/* DATA:END */` 구간만 통째로 갈아끼운다.
 그 바깥은 한 글자도 건드리지 않는다.
 

@@ -42,6 +42,23 @@ npm run lint         # ESLint
 - `.gitignore`에 `/data/*.db*`가 등록되어 있어 커밋되지 않는다.
 - **초기화 방법**: `mockup/data/` 디렉터리를 삭제하고 재실행한다.
 
+### 디자인 자산 이미지 (`mockup/public/assets/nh/`)
+
+`/proto/assets`(S10 디자인 자산 갤러리)가 읽는 실물 이미지 위치다.
+
+- **커밋하지 않는다.** `.gitignore`에 `mockup/public/assets/nh/*`가 등록되어 있고 `README.md`만 추적된다.
+- **이유**: `.github/workflows/pages.yml`이 저장소 루트 전체를 GitHub Pages로 공개 서빙한다(main → `/`, dev → `/dev/`). 올원뱅크·기업인터넷뱅킹 화면 캡처나 NH 로고 원본을 커밋하면 공개 URL로 노출된다. `design-system/uploads/`를 제외한 것과 같은 이유다.
+- 파일이 없어도 화면은 동작한다. `AssetThumb`이 대체본을 그리고 배지로 구분한다.
+- 파일명 규칙과 폴더 구조는 `mockup/public/assets/nh/README.md` 참고.
+
+### 화면 리디자인 참고 캡처 (`reference/ui/`)
+
+외부 서비스 UI 캡처를 모아 두는 곳이다. 화면 코드가 읽지 않는 순수 참고 자료다.
+
+- **커밋하지 않는다.** `.gitignore`에 `reference/ui/**`가 등록되어 있고 `README.md`만 추적된다.
+- **이유**: 위와 같다. 루트가 공개 서빙되는데 캡처에 사내 프로젝트명·계정명이 함께 찍혀 있다.
+- 파일이 없어도 저장소·빌드는 그대로 동작한다. 자세한 내용은 `reference/ui/README.md` 참고.
+
 ---
 
 ## 3. 환경변수

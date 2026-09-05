@@ -15,11 +15,40 @@
 
 ```
 mockup/public/assets/nh/
-├── logo/        allone-wordmark.svg · nh-symbol.svg · corp-logo.svg · nh-logotype.svg
+├── logo/        allone-wordmark.svg · nh-symbol.jpg · nh-wordmark.jpg · corp-logo.svg · nh-logotype.svg
+├── ci/          nh-colors.jpg · nh-wave.jpg          ← 농협 공식 CI 아카이브
 ├── component/   button.png · card.png · textfield.png · menugrid.png · bottomnav.png
 ├── screen/      allone-home.png · allone-login.png · allone-menu.png · corp-dashboard.png
 └── icon/        (아직 카드 없음 — 추가하려면 data.ts에 항목부터 만들 것)
 ```
+
+## 농협 공식 CI 자산 반입 (`logo/` · `ci/`)
+
+출처는 저장소 루트의 **`reference/농협CI 이미지 아카이브.zip`** 이다. 아래 4장이 들어 있다.
+
+| zip 안 이름 | 넣을 위치 | 갤러리 카드 |
+|---|---|---|
+| `NH농협금융지주_심볼마크.jpg` | `logo/nh-symbol.jpg` | NH 심볼마크 |
+| `NH농협금융지주_워드마크.jpg` | `logo/nh-wordmark.jpg` | NH 워드마크 |
+| `NH농협금융지주_전용색상.jpg` | `ci/nh-colors.jpg` | NH 전용색상 |
+| `그래픽모티브.jpg` | `ci/nh-wave.jpg` | 그래픽모티브 NH Wave |
+
+zip은 macOS에서 만들어져 한글 파일명이 **NFD·UTF-8** 로 들어 있다. Windows 기본 압축 해제기로 풀면
+이름이 깨지므로, 풀고 나서 위 표의 이름으로 직접 바꿔 넣는 편이 확실하다.
+
+### 전용색상은 값도 코드에 있다
+
+`nh-colors.jpg` 규격서의 PANTONE·RGB 값은 `mockup/app/proto/assets/data.ts`의 `NH_CI_COLORS`에
+옮겨져 있어 **이미지가 없어도 토큰 카드는 정상으로 보인다.**
+
+| 이름 | PANTONE | HEX |
+|---|---|---|
+| NH Blue | 300 C | `#005CA9` |
+| NH Yellow | 1235 C | `#FBBA00` |
+| NH Green | 354 C | `#04A64B` |
+| NH Light Green | 368 C | `#A2C617` |
+
+같은 화면의 `BRAND_RAMP`(teal 계열)는 **올원뱅크 앱 팔레트로 CI 전용색상과 다른 값이다.** 섞어 쓰지 않는다.
 
 ## 규칙
 

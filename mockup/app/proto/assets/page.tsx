@@ -1,6 +1,6 @@
 import { ProtoHeader } from "../components/ProtoHeader";
 import { AssetCard, AssetUploadCard } from "./components/AssetCard";
-import { ASSET_STATS, BRAND_RAMP, COMPONENT_ASSETS, LOGO_ASSETS, PICKED_ASSETS, SCREEN_ASSETS, STATUS_TOKENS } from "./data";
+import { ASSET_STATS, BRAND_RAMP, COMPONENT_ASSETS, LOGO_ASSETS, NH_CI_COLORS, PICKED_ASSETS, SCREEN_ASSETS, STATUS_TOKENS } from "./data";
 
 /**
  * 실물/대체본 판정이 public/assets/nh/ 의 파일 존재 여부에 달려 있다.
@@ -72,7 +72,7 @@ export default function ProtoAssetsPage() {
           </div>
         )}
 
-        <SectionHeader title="로고 · 워드마크" count={String(LOGO_ASSETS.length)} />
+        <SectionHeader title="로고 · CI 기본요소" count={String(LOGO_ASSETS.length)} />
         <div className="flex gap-3.5 mb-8 overflow-x-auto pb-1">
           {LOGO_ASSETS.map((asset) => (
             <AssetCard key={asset.id} asset={asset} />
@@ -95,7 +95,21 @@ export default function ProtoAssetsPage() {
         </div>
 
         <SectionHeader title="컬러 · 타이포 토큰" count="95" />
-        <div className="grid grid-cols-4 gap-3.5">
+        <div className="grid grid-cols-3 gap-3.5">
+          <div className="col-span-2 bg-white border border-slate-200 rounded-xl p-4">
+            <div className="text-[13px] font-semibold text-slate-800 mb-0.5">NH 전용색상 <span className="text-[10px] font-semibold text-green-700 align-middle">CI 정본</span></div>
+            <div className="text-[11px] text-slate-400 mb-3">NH농협금융지주 CI 규격서 · PANTONE 지정색</div>
+            <div className="grid grid-cols-4 gap-2.5">
+              {NH_CI_COLORS.map((c) => (
+                <div key={c.hex}>
+                  <div className="h-[42px] rounded-md" style={{ background: c.hex }} />
+                  <div className="text-[11px] font-semibold text-slate-700 mt-1.5">{c.name}</div>
+                  <div className="text-[10px] text-slate-400 leading-tight">{c.pantone}<br />{c.hex}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="bg-white border border-slate-200 rounded-xl p-4">
             <div className="text-[13px] font-semibold text-slate-800 mb-0.5">브랜드 램프</div>
             <div className="text-[11px] text-slate-400 mb-3">teal-50 → teal-900 · 10단계</div>

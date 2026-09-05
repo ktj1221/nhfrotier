@@ -24,12 +24,12 @@
 `DELETE /api/v1/projects/{projectId}/files/{fileId}`
 
 ### Template
-`GET /api/v1/templates`
+`GET /api/v1/templates`  — `?type=DOCUMENT|BRAND_ASSET`로 유형 필터
 `GET /api/v1/templates/{templateId}`
 
 ### AI Job
-`POST /api/v1/projects/{projectId}/ai/jobs`
-`GET /api/v1/ai/jobs/{jobId}`
+`POST /api/v1/projects/{projectId}/ai/jobs`  — body의 `job_type`으로 산출물 종류를 구분 (8절)
+`GET /api/v1/ai/jobs/{jobId}`  — `BRAND_CONCEPT` Job은 출력 3건을 함께 반환
 `POST /api/v1/ai/jobs/{jobId}/retry`
 
 ### Collaboration
@@ -128,3 +128,32 @@ History는 과정과 의사결정 기록이다.
 - 429 AI 호출 제한
 - 500 서버 오류
 - 502/504 LLM/외부 연계 오류
+
+## 8. 산출물 유형 확장 (FR-13 브랜드 시안)
+
+카드 실물·홍보물 컨셉 시안을 위해 **새 테이블과 새 엔드포인트를 만들지 않는다.** 기존 리소스에 구분 필드만 둔다. 근거: [FR-13](개발문서/기능명세/FR-13_브랜드시안제작.md)
+
+### 8-1. 추가 필드
+
+| 테이블 | 필드 | 값 | 용도 |
+|---|---|---|---|
+| `templates` | `template_type` | `DOCUMENT` / `BRAND_ASSET` | 문서 양식과 브랜드 자산(로고·컬러 토큰·서체 규칙·규격 프리셋)을 구분 |
+| `ai_jobs` | `job_type` | `DOC_DRAFT` / `SCREEN_MOCKUP` / `BRAND_CONCEPT` | 산출물 종류별 프롬프트·후처리 분기 |
+| `ai_job_outputs` | `variant_no` | 1 · 2 · 3 | 한 Job이 만든 시안 3안의 구분 |
+| `ai_job_outputs` | `variant_label` | 텍스트 | 방향 설명 (예: "정통·신뢰형") |
+
+### 8-2. 규격 프리셋
+
+프리셋은 코드가 아니라 `templates`(`BRAND_ASSET`) 데이터로 관리한다. 유형 추가 시 코드를 고치지 않는다.
+
+| 프리셋 ID | 비율 |
+|---|---|
+| `CARD_H` | 1.586 : 1 |
+| `CARD_V` | 1 : 1.586 |
+| `POSTER_A` | 1 : 1.414 |
+| `BANNER_SQ` | 1 : 1 |
+
+### 8-3. Version 생성 시점
+
+`BRAND_CONCEPT` Job이 완료돼도 **Version은 생성되지 않는다.** 3안은 `ai_job_outputs`에만 남는 후보다.
+사용자가 하나를 선택할 때 `versions` 1행이 생성되며 `source_type = AI_GENERATION`, `source_job_id`로 Job과 연결된다. 선택되지 않은 시안은 Version이 되지 않는다.

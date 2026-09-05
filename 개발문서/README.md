@@ -7,12 +7,13 @@
 - 01_PRD.md: 제품 목표, 사용자, 문제, 기능 범위, MVP, 비기능 요구사항
 - 02_USER_STORIES_AC.md: Epic, User Story, Acceptance Criteria, 우선순위
 - 03_IA_FUNCTION_SPEC.md: IA, 화면 구조, 주요 상태
-- 기능명세/: FR-01~12 기능별 상세 명세와 추적 매트릭스(00_INDEX.md)
+- 기능명세/: FR-01~13 기능별 상세 명세와 추적 매트릭스(00_INDEX.md)
 - 04_SYSTEM_ARCHITECTURE.md: Linux + Docker 기반 시스템 구조, LLM API 연계, 비동기 처리, 보안 원칙
 - 05_API_DB_SPEC.md: API 초안, 도메인 모델, 주요 테이블 및 데이터 관계
 - 06_DEVELOPMENT_BACKLOG.md: 프로젝트 분할, Sprint/단계, 개발 티켓 후보, 완료 기준
 - 07_QA_SECURITY_OPERATIONS.md: 테스트, 보안, 운영, 장애 대응 체크리스트
 - 08_DECISIONS_OPEN_ISSUES.md: 결정사항, 미결사항, 인프라/보안 협의 항목
+- 09_UI_SPEC_브랜드시안.md: S08·S09 화면 상세 명세 (FR-13 브랜드 시안 제작)
 
 ## 3. 권장 개발 순서
 P0 제품/환경 확정 → P1 업무공간 기반 → P2 AI 제작 → P3 협업/의사결정 → P4 Version/History/Export → P5 고도화(RAG/통계/자동화)

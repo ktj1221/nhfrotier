@@ -10,6 +10,7 @@
 ## 2. 동작 상세
 
 - 사용자 요청 + 선택한 참고자료([FR-03](개발문서/기능명세/FR-03_참고자료.md)) + Template([FR-04](개발문서/기능명세/FR-04_템플릿.md))으로 AI 작업(Job)을 생성한다.
+- 산출물 종류는 `ai_jobs.job_type`으로 구분한다: `DOC_DRAFT` / `SCREEN_MOCKUP` / `BRAND_CONCEPT`. 카드·홍보물 컨셉 시안(`BRAND_CONCEPT`)은 본 Job 구조를 그대로 재사용하며 별도 파이프라인을 두지 않는다 → [FR-13](개발문서/기능명세/FR-13_브랜드시안제작.md)
 - 장시간 작업은 **비동기 Job**으로 처리한다. 상태 전이: `REQUESTED → PROCESSING → COMPLETED / FAILED / CANCELLED` (03 상태 모델)
 - 실패한 작업은 원인 요약과 재시도 옵션을 제공한다(retry API). LLM 오류는 502/504로 정규화된다.
 - 중복 제출을 방지한다. (❓ idempotency 처리 방식 미결 — [결정/미결](개발문서/08_DECISIONS_OPEN_ISSUES.md))

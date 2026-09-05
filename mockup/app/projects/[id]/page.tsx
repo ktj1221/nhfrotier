@@ -13,9 +13,12 @@ interface MockupDetail extends MockupSummary { html_content: string; }
 interface Member { id: string; user_id: string; user_name: string; user_color: string; user_role: string; role: string; }
 interface Comment { id: string; user_id: string; user_name: string; user_color: string; content: string; created_at: string; }
 interface ChatMsg { id: string; user_id: string; user_name: string; user_color: string; content: string; created_at: string; }
+interface MeetingNote { id: string; name: string; created_at: string; }
+interface ReviewItem { id: string; category: '합의' | '이견' | '추가확인'; title: string; detail: string; }
+interface ReviewSummary { id: string; created_at: string; items: ReviewItem[]; }
 
 type LeftTab = 'generate' | 'history' | 'members' | 'refs';
-type RightTab = 'comments' | 'chat';
+type RightTab = 'comments' | 'chat' | 'reviews';
 
 export default function ProjectPage() {
   const { id } = useParams<{ id: string }>();
@@ -47,6 +50,17 @@ export default function ProjectPage() {
   const [uploadError, setUploadError] = useState('');
   const [screenName, setScreenName] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Meeting notes
+  const [meetingNotes, setMeetingNotes] = useState<MeetingNote[]>([]);
+  const [uploadingNote, setUploadingNote] = useState(false);
+  const [noteUploadError, setNoteUploadError] = useState('');
+  const noteInputRef = useRef<HTMLInputElement>(null);
+
+  // AI review summary
+  const [reviewSummary, setReviewSummary] = useState<ReviewSummary | null>(null);
+  const [summarizing, setSummarizing] = useState(false);
+  const [summarizeError, setSummarizeError] = useState('');
 
   // Members
   const [addingMember, setAddingMember] = useState(false);
@@ -81,6 +95,16 @@ export default function ProjectPage() {
     if (res.ok) setMembers(await res.json());
   }, [id]);
 
+  const fetchMeetingNotes = useCallback(async () => {
+    const res = await fetch(`/api/projects/${id}/meeting-notes`);
+    if (res.ok) setMeetingNotes(await res.json());
+  }, [id]);
+
+  const fetchReviewSummary = useCallback(async () => {
+    const res = await fetch(`/api/projects/${id}/reviews`);
+    if (res.ok) setReviewSummary(await res.json());
+  }, [id]);
+
   const fetchComments = useCallback(async (mockupId: string) => {
     const res = await fetch(`/api/mockups/${mockupId}/comments`);
     if (res.ok) setComments(await res.json());
@@ -102,7 +126,7 @@ export default function ProjectPage() {
     lastChatTime.current = msgs[msgs.length - 1].created_at;
   }, [id]);
 
-  useEffect(() => { fetchProject(); fetchMembers(); }, [fetchProject, fetchMembers]);
+  useEffect(() => { fetchProject(); fetchMembers(); fetchMeetingNotes(); fetchReviewSummary(); }, [fetchProject, fetchMembers, fetchMeetingNotes, fetchReviewSummary]);
 
   useEffect(() => {
     fetchChat(true);
@@ -172,6 +196,41 @@ export default function ProjectPage() {
     if (!confirm('이 참조 화면을 삭제하시겠습니까?')) return;
     await fetch(`/api/projects/${id}/reference-screens`, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ screenId }) });
     fetchProject();
+  }
+
+  async function handleUploadNote(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setNoteUploadError('');
+    setUploadingNote(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('name', file.name);
+      const res = await fetch(`/api/projects/${id}/meeting-notes`, { method: 'POST', body: formData });
+      const data = await res.json();
+      if (!res.ok) { setNoteUploadError(data.error || '업로드 실패'); return; }
+      fetchMeetingNotes();
+    } catch { setNoteUploadError('업로드 중 오류가 발생했습니다.'); }
+    finally { setUploadingNote(false); if (noteInputRef.current) noteInputRef.current.value = ''; }
+  }
+
+  async function handleDeleteNote(noteId: string) {
+    if (!confirm('이 회의자료를 삭제하시겠습니까?')) return;
+    await fetch(`/api/projects/${id}/meeting-notes`, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ noteId }) });
+    fetchMeetingNotes();
+  }
+
+  async function handleSummarizeReviews() {
+    setSummarizeError('');
+    setSummarizing(true);
+    try {
+      const res = await fetch(`/api/projects/${id}/reviews/summarize`, { method: 'POST' });
+      const data = await res.json();
+      if (!res.ok) { setSummarizeError(data.error || '의견 정리에 실패했습니다.'); return; }
+      fetchReviewSummary();
+    } catch { setSummarizeError('네트워크 오류가 발생했습니다.'); }
+    finally { setSummarizing(false); }
   }
 
   async function handleDeleteMockup(mockupId: string) {
@@ -313,6 +372,38 @@ export default function ProjectPage() {
               {refScreens.length === 3 && (
                 <p className="text-xs text-indigo-600 text-center">참조 화면 3개가 모두 등록되었습니다.</p>
               )}
+
+              <div className="border-t border-slate-100 pt-3 mt-1">
+                <p className="text-xs text-slate-500 mb-2">
+                  회의자료를 등록하면 AI 의견 정리 시 함께 분석합니다. (TXT, MD · 최대 5개)
+                </p>
+                {meetingNotes.length > 0 && (
+                  <div className="space-y-1.5 mb-2">
+                    {meetingNotes.map((note) => (
+                      <div key={note.id} className="flex items-center gap-2 px-2.5 py-1.5 bg-slate-50 rounded-lg text-xs">
+                        <svg className="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        <span className="flex-1 truncate text-slate-700">{note.name}</span>
+                        <button onClick={() => handleDeleteNote(note.id)} className="p-0.5 text-slate-300 hover:text-red-500 transition-colors shrink-0">
+                          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {meetingNotes.length < 5 && (
+                  <div className="space-y-2">
+                    {noteUploadError && <p className="text-xs text-red-600">{noteUploadError}</p>}
+                    <label className={`flex items-center justify-center gap-2 w-full py-2 border-2 border-dashed rounded-lg cursor-pointer text-xs transition-colors ${uploadingNote ? 'border-slate-200 text-slate-300' : 'border-slate-300 text-slate-500 hover:border-indigo-400 hover:text-indigo-600'}`}>
+                      {uploadingNote ? (
+                        <><div className="w-3 h-3 border border-indigo-600 border-t-transparent rounded-full animate-spin" />업로드 중...</>
+                      ) : (
+                        <><svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>회의자료 추가 ({meetingNotes.length}/5)</>
+                      )}
+                      <input ref={noteInputRef} type="file" accept=".txt,.md,text/plain,text/markdown" onChange={handleUploadNote} className="hidden" disabled={uploadingNote} />
+                    </label>
+                  </div>
+                )}
+              </div>
             </div>
           )}
 
@@ -553,15 +644,22 @@ export default function ProjectPage() {
           <aside className="w-80 bg-white border-l border-slate-200 flex flex-col overflow-hidden shrink-0">
             {/* Right Tab bar */}
             <div className="flex border-b border-slate-100 shrink-0">
-              {(['comments', 'chat'] as RightTab[]).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setRightTab(tab)}
-                  className={`flex-1 py-3 text-xs font-medium transition-colors ${rightTab === tab ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
-                >
-                  {tab === 'comments' ? `의견 ${selectedMockup ? `(${comments.length})` : ''}` : '채팅'}
-                </button>
-              ))}
+              {(['comments', 'chat', 'reviews'] as RightTab[]).map((tab) => {
+                const labels: Record<RightTab, string> = {
+                  comments: `의견 ${selectedMockup ? `(${comments.length})` : ''}`,
+                  chat: '채팅',
+                  reviews: 'AI 의견',
+                };
+                return (
+                  <button
+                    key={tab}
+                    onClick={() => setRightTab(tab)}
+                    className={`flex-1 py-3 text-xs font-medium transition-colors ${rightTab === tab ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
+                  >
+                    {labels[tab]}
+                  </button>
+                );
+              })}
             </div>
 
             {/* ── COMMENTS ── */}
@@ -682,6 +780,57 @@ export default function ProjectPage() {
                         </svg>
                       </button>
                     </form>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* ── AI REVIEW SUMMARY ── */}
+            {rightTab === 'reviews' && (
+              <div className="flex-1 flex flex-col overflow-hidden">
+                <div className="p-3 border-b border-slate-100 shrink-0 space-y-2">
+                  <p className="text-[11px] text-slate-500">
+                    등록된 의견({comments.length + chatMessages.length}건)과 회의자료({meetingNotes.length}건)를 AI가 합의/이견/추가확인으로 정리합니다.
+                  </p>
+                  {summarizeError && <p className="text-xs text-red-600 bg-red-50 px-2.5 py-1.5 rounded-lg">{summarizeError}</p>}
+                  <button
+                    onClick={handleSummarizeReviews}
+                    disabled={summarizing}
+                    className={`w-full py-2 text-xs font-medium rounded-lg transition-colors ${summarizing ? 'bg-indigo-400 text-white cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
+                  >
+                    {summarizing ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        의견 정리 중...
+                      </span>
+                    ) : '의견 정리 요청'}
+                  </button>
+                </div>
+                <div className="flex-1 overflow-y-auto p-3 space-y-4">
+                  {!reviewSummary ? (
+                    <p className="text-xs text-slate-400 text-center py-8">아직 정리된 의견이 없습니다.<br />위 버튼으로 정리를 요청해보세요.</p>
+                  ) : (
+                    (['합의', '이견', '추가확인'] as const).map((category) => {
+                      const items = reviewSummary.items.filter((it) => it.category === category);
+                      if (items.length === 0) return null;
+                      const dotColor = category === '합의' ? 'bg-emerald-500' : category === '이견' ? 'bg-amber-500' : 'bg-sky-500';
+                      return (
+                        <div key={category}>
+                          <div className="flex items-center gap-1.5 mb-2">
+                            <span className={`w-1.5 h-1.5 rounded-full ${dotColor}`} />
+                            <span className="text-xs font-semibold text-slate-700">{category} · {items.length}건</span>
+                          </div>
+                          <div className="space-y-2">
+                            {items.map((item) => (
+                              <div key={item.id} className="p-2.5 bg-slate-50 rounded-lg">
+                                <p className="text-xs font-medium text-slate-800 mb-1">{item.title}</p>
+                                <p className="text-[11px] text-slate-500">{item.detail}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })
                   )}
                 </div>
               </div>

@@ -36,7 +36,7 @@ flowchart TD
 ### S03 Project Workspace
 좌측: 파일/Template/멤버
 중앙: 생성 결과물
-우측: AI Chat/협업/AI 의견
+우측: AI Chat/협업/AI 의견/AI 검토
 상단: Version/History/Export
 
 ### S04 AI Chat
@@ -44,6 +44,8 @@ flowchart TD
 
 ### S05 Result/Review
 결과물 미리보기, 댓글, AI 의견 요약, 반영 선택을 한 화면에서 연결한다.
+
+**AI 검토**([FR-14](개발문서/기능명세/FR-14_책임성검토.md))도 이 화면에 함께 놓인다. 지적 카드는 [근거 인용 → 사유 → 제안] 순으로 보여주고, 담당자는 **반영 / 보류 / 반려 / 준법 검토 요청**을 고른다. AI 제안(축별 좌측 보더 · `AI` 표기)과 사람의 결정(아바타 배지)을 시각적으로 구분한다.
 
 ### S06 Version
 Version 목록, 현재 버전, 비교 대상 선택, 변경 요약, 관련 의견을 제공한다.
@@ -75,6 +77,12 @@ REQUESTED → PROCESSING → COMPLETED / FAILED / CANCELLED
 
 ### Comment/Review
 OPEN → REVIEWED → ACCEPTED / REJECTED / DEFERRED
+
+### Responsibility Review (FR-14)
+검토 실행: RUNNING → DONE / FAILED
+지적 결정: (미결정) → ACCEPTED / DEFERRED / REJECTED / COMPLIANCE_REQUESTED
+
+`COMPLIANCE_REQUESTED`가 Comment/Review 상태 모델과 다른 지점이다. AI도 담당자도 판단하지 않고 준법 담당자에게 넘기는 상태다. → ❓ 수신자·알림·SLA 미결
 
 ### Project
 DRAFT → ACTIVE → REVIEW → COMPLETED → ARCHIVED

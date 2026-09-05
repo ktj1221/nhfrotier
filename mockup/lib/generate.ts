@@ -1,9 +1,18 @@
 import Anthropic from '@anthropic-ai/sdk';
 import type { ReferenceScreen } from './db';
+import { buildGuardrailSection } from './responsibility-rules';
 
 const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
+
+export const GENERATE_MODEL = 'claude-opus-5';
+
+/**
+ * 인라인 CSS를 포함한 HTML 문서 한 장은 8K 토큰을 쉽게 넘는다.
+ * 큰 값은 스트리밍으로만 안전하다 (논스트리밍은 HTTP 타임아웃에 걸린다).
+ */
+const GENERATE_MAX_TOKENS = 64000;
 
 export async function generateMockup(
   proposalContent: string,
@@ -24,7 +33,7 @@ Rules:
 - Use a color palette that matches the business domain (e.g., blue for fintech, green for healthcare)
 - Include proper navigation, header, content areas as appropriate for the screen type
 
-If reference screens are provided as images, analyze their visual style (colors, layout, typography, component design) and apply that style to the new mockup.`;
+If reference screens are provided as images, analyze their visual style (colors, layout, typography, component design) and apply that style to the new mockup.${buildGuardrailSection()}`;
 
   const userContent: Anthropic.MessageParam['content'] = [];
 
@@ -61,12 +70,22 @@ ${proposalContent}
 Generate a complete HTML document that represents this screen as a mockup. The HTML should be production-quality in appearance but clearly a static mockup.`,
   });
 
-  const response = await client.messages.create({
-    model: 'claude-opus-4-8',
-    max_tokens: 8096,
-    system: systemPrompt,
+  const stream = client.messages.stream({
+    model: GENERATE_MODEL,
+    max_tokens: GENERATE_MAX_TOKENS,
+    thinking: { type: 'adaptive' },
+    // 배열 + cache_control로 두면 화면을 연달아 생성할 때 시스템 프롬프트가 캐시 히트한다.
+    system: [{ type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } }],
     messages: [{ role: 'user', content: userContent }],
   });
+
+  const response = await stream.finalMessage();
+
+  // 잘린 응답을 그냥 통과시키면 아래 코드펜스 정규식이 매칭에 실패하고,
+  // 그 다음 폴백이 <html>로 감싸버려 겉보기 정상인 깨진 문서가 DB에 저장된다.
+  if (response.stop_reason === 'max_tokens') {
+    throw new Error('HTML이 너무 길어 생성이 중단되었습니다. 기획안을 더 작은 단위로 나눠 다시 시도해주세요.');
+  }
 
   const textContent = response.content.find((c) => c.type === 'text');
   if (!textContent || textContent.type !== 'text') {

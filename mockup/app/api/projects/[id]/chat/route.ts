@@ -19,7 +19,7 @@ export async function GET(
         FROM chat_messages cm
         JOIN users u ON cm.user_id = u.id
         WHERE cm.project_id = ? AND cm.created_at > ?
-        ORDER BY cm.created_at ASC
+        ORDER BY cm.created_at ASC, cm.rowid ASC
         LIMIT 100
       `).all(id, since);
     } else {
@@ -28,7 +28,7 @@ export async function GET(
         FROM chat_messages cm
         JOIN users u ON cm.user_id = u.id
         WHERE cm.project_id = ?
-        ORDER BY cm.created_at DESC
+        ORDER BY cm.created_at DESC, cm.rowid DESC
         LIMIT 50
       `).all(id);
       messages = (messages as unknown[]).reverse();

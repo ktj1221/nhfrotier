@@ -2,7 +2,16 @@
 
 `/proto/assets` 화면이 읽는 실물 이미지를 여기에 넣는다.
 
-## 왜 여기만 gitignore인가
+## 공식 CI 4장은 커밋된다 (예외)
+
+`logo/nh-symbol.jpg` · `logo/nh-wordmark.jpg` · `ci/nh-colors.jpg` · `ci/nh-wave.jpg` 는
+농협이 대외 공개하는 CI 자산이라 **예외적으로 커밋한다.** 공개 정적 미러
+`mockup-site/design-assets.html` 이 이 경로를 상대참조(`../mockup/public/assets/nh/...`)로
+그대로 쓰므로, 이 파일들을 옮기면 공개 페이지의 이미지가 깨진다.
+
+나머지(올원뱅크·기업뱅킹 화면 캡처 등)는 아래 이유로 여전히 제외된다.
+
+## 왜 나머지는 gitignore인가
 
 저장소 루트 전체가 GitHub Pages로 공개 서빙된다 (`.github/workflows/pages.yml` — main은 `/`, dev는 `/dev/`).
 올원뱅크·기업인터넷뱅킹 화면 캡처나 NH 로고 원본을 커밋하면 **공개 URL로 그대로 노출된다.**

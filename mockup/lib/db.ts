@@ -89,6 +89,32 @@ function initSchema(db: Database.Database) {
       FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );
+
+    CREATE TABLE IF NOT EXISTS meeting_notes (
+      id TEXT PRIMARY KEY,
+      project_id TEXT NOT NULL,
+      name TEXT NOT NULL,
+      content TEXT NOT NULL,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
+    );
+
+    CREATE TABLE IF NOT EXISTS review_summaries (
+      id TEXT PRIMARY KEY,
+      project_id TEXT NOT NULL,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
+    );
+
+    CREATE TABLE IF NOT EXISTS review_items (
+      id TEXT PRIMARY KEY,
+      review_summary_id TEXT NOT NULL,
+      category TEXT NOT NULL,
+      title TEXT NOT NULL,
+      detail TEXT NOT NULL,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      FOREIGN KEY (review_summary_id) REFERENCES review_summaries(id) ON DELETE CASCADE
+    );
   `);
 }
 
@@ -155,4 +181,29 @@ export interface ChatMessage {
   created_at: string;
   user_name?: string;
   user_color?: string;
+}
+
+export interface MeetingNote {
+  id: string;
+  project_id: string;
+  name: string;
+  content: string;
+  created_at: string;
+}
+
+export type ReviewCategory = '합의' | '이견' | '추가확인';
+
+export interface ReviewSummary {
+  id: string;
+  project_id: string;
+  created_at: string;
+}
+
+export interface ReviewItem {
+  id: string;
+  review_summary_id: string;
+  category: ReviewCategory;
+  title: string;
+  detail: string;
+  created_at: string;
 }

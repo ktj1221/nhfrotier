@@ -12,7 +12,9 @@ export type ThumbArt =
   | "screen-home"
   | "screen-login"
   | "screen-menu"
-  | "screen-corp";
+  | "screen-corp"
+  | "colorspec"
+  | "wave";
 
 export type Asset = {
   id: string;
@@ -32,12 +34,15 @@ export const ASSET_STATS = [
   { value: "23", label: "컴포넌트" },
   { value: "95", label: "컬러 토큰" },
   { value: "4", label: "화면 템플릿" },
-  { value: "4", label: "로고 · 워드마크" },
+  { value: "7", label: "로고 · CI" },
 ];
 
 export const LOGO_ASSETS: Asset[] = [
   { id: "allone-wordmark", name: "올원뱅크 워드마크", source: "allone", src: "/assets/nh/logo/allone-wordmark.svg", art: "wordmark", word: "올원뱅크" },
-  { id: "nh-symbol", name: "NH 심볼마크", source: "nh", src: "/assets/nh/logo/nh-symbol.svg", art: "symbol" },
+  { id: "nh-symbol", name: "NH 심볼마크", source: "nh", src: "/assets/nh/logo/nh-symbol.jpg", art: "symbol" },
+  { id: "nh-wordmark", name: "NH 워드마크", source: "nh", src: "/assets/nh/logo/nh-wordmark.jpg", art: "wordmark", word: "NH" },
+  { id: "nh-colors", name: "NH 전용색상", source: "nh", src: "/assets/nh/ci/nh-colors.jpg", art: "colorspec" },
+  { id: "nh-wave", name: "그래픽모티브 NH Wave", source: "nh", src: "/assets/nh/ci/nh-wave.jpg", art: "wave" },
   { id: "corp-logo", name: "기업뱅킹 로고", source: "corp", src: "/assets/nh/logo/corp-logo.svg", art: "wordmark", word: "기업인터넷뱅킹" },
   { id: "nh-logotype", name: "국문 로고타입", source: "nh", src: "/assets/nh/logo/nh-logotype.svg", art: "wordmark", word: "농협은행" },
 ];
@@ -55,6 +60,18 @@ export const SCREEN_ASSETS: Asset[] = [
   { id: "screen-login", name: "로그인 화면", source: "allone", src: "/assets/nh/screen/allone-login.png", art: "screen-login" },
   { id: "screen-menu", name: "전체메뉴", source: "allone", src: "/assets/nh/screen/allone-menu.png", art: "screen-menu" },
   { id: "screen-corp", name: "기업뱅킹 대시보드", source: "corp", src: "/assets/nh/screen/corp-dashboard.png", art: "screen-corp" },
+];
+
+/**
+ * NH농협금융지주 CI 전용색상 정본.
+ * public/assets/nh/ci/nh-colors.jpg 규격서에 적힌 PANTONE·RGB 값을 그대로 옮긴 것이다.
+ * 아래 BRAND_RAMP(올원뱅크 앱 팔레트)와는 다른 값이므로 섞어 쓰지 않는다.
+ */
+export const NH_CI_COLORS = [
+  { name: "NH Blue", pantone: "PANTONE 300 C", hex: "#005CA9" },
+  { name: "NH Yellow", pantone: "PANTONE 1235 C", hex: "#FBBA00" },
+  { name: "NH Green", pantone: "PANTONE 354 C", hex: "#04A64B" },
+  { name: "NH Light Green", pantone: "PANTONE 368 C", hex: "#A2C617" },
 ];
 
 /** design-system/tokens/ 실측값. 토큰 카드는 썸네일이 아니라 값 자체를 보여준다. */

@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { Asset } from "../data";
+import { NH_CI_COLORS, type Asset } from "../data";
 
 /**
  * public/ 아래에 실물 파일이 있는지 확인한다.
@@ -127,6 +127,28 @@ function Art({ asset }: { asset: Asset }) {
             ))}
           </div>
         </div>
+      );
+
+    case "colorspec":
+      return (
+        <div className="grid grid-cols-2 gap-1.5">
+          {NH_CI_COLORS.map((c) => (
+            <div key={c.hex} className="w-[68px]">
+              <div className="h-[26px] rounded-[5px]" style={{ background: c.hex }} />
+              <div className="text-[8px] text-slate-400 mt-[3px] leading-none">{c.pantone.replace("PANTONE ", "")}</div>
+            </div>
+          ))}
+        </div>
+      );
+
+    case "wave":
+      /* NH Wave — 좌측 blue 에서 우측 green 으로 넘어가는 가로형 기본형 */
+      return (
+        <svg width="150" height="56" viewBox="0 0 150 56" fill="none">
+          <path d="M0 0h150v56H0z" fill="#005CA9" />
+          <path d="M0 56c46 0 44-46 92-46h58v46H0z" fill="#A2C617" />
+          <path d="M0 56c40 0 40-38 88-38h62v38H0z" fill="#04A64B" />
+        </svg>
       );
 
     case "screen-corp":

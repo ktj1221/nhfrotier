@@ -75,6 +75,24 @@ node scripts/sync-dev.mjs   # 훅 활성화 확인
 - 외부에 공유할 때만 `dev` → `main` PR로 승격한다. 승격 전 `/dev/`에서 먼저 확인할 것.
 - **팀원에게 링크를 줄 때 어느 쪽인지 명시할 것.** 확정본이 아닌 것을 루트 링크로 오해시키지 말 것.
 
+#### 어느 브랜치냐보다 어느 폴더냐가 먼저다
+
+**Pages 로 화면이 보이는 것은 `mockup-site/` 뿐이다.**
+
+| 폴더 | 무엇 | Pages |
+|---|---|---|
+| `mockup/` | Next.js 앱 (`npm run dev` 필요) | **화면으로 안 보인다** — 소스일 뿐이다 |
+| `mockup-site/` | 손으로 쓴 정적 HTML | **이것만 보인다** |
+
+Pages 워크플로는 저장소를 통째로 정적 서빙하므로 `mockup/`의 *파일*은 URL로 존재하지만,
+Next.js 앱이라 화면은 뜨지 않는다. **공유 링크에 보여야 하는 변경은 `mockup-site/`에도 반영할 것.**
+`mockup/`만 고치고 dev에 merge하면 링크는 한 글자도 바뀌지 않는다.
+
+또 하나 — `mockup-site/`가 참조하는 이미지가 `.gitignore` 대상이면 **내 브라우저에서는 보이고
+팀원에게는 404**다. 로컬 확인으로는 절대 안 잡힌다. `node scripts/check-pages-assets.mjs`가
+이걸 검사하며, `mockup-site/`를 건드린 커밋에서 pre-commit 훅이 자동으로 돌린다.
+자세한 내용은 `mockup-site/README.md`.
+
 ## 개발 프로세스
 
 - 코드 작성 후 **로컬에서 먼저 테스트**할 것. 테스트 없이 프로덕션(master push)으로 넘기지 말 것.
@@ -186,6 +204,7 @@ node scripts/sync-dev.mjs   # 훅 활성화 확인
 | **특정 기능(FR)의 동작·범위·구현상태 확인** | `개발문서/기능명세/00_INDEX.md` | FR별 상세 명세, FR ↔ US ↔ 화면 ↔ API 추적, 구현 상태 |
 | **기능명세 md 수정** | `개발문서/기능명세/00_CHANGELOG.md` | 변경 이력 기록 방법. 수정과 동시에 행을 추가할 것 |
 | **화면 구조·상태 모델 확인** | `개발문서/03_IA_FUNCTION_SPEC.md` | IA, 화면 구조, 상태 모델 |
+| **공유 링크에 보일 화면 작업 / `mockup-site/` 수정** | `mockup-site/README.md` | 목업이 두 벌인 이유, Pages에서 이미지가 깨지는 조건, 검사 스크립트 |
 | **문서 허브 화면(디자인) 수정** | `reference/README.md` | 디자인 정본은 `reference/doc-hub.html`이다. `프로젝트문서.html`은 빌드 산출물이므로 직접 고치지 말 것 |
 | **테스트 작성 / 기능 완료 점검** | `개발문서/07_QA_SECURITY_OPERATIONS.md` | 기능·보안·AI 품질 테스트 항목 |
 | **"이거 왜 이렇게 되어 있지?" 의문이 들 때** | `개발문서/08_DECISIONS_OPEN_ISSUES.md` | 결정사항과 미결사항. 미결이면 임의로 정하지 말고 질문할 것 |

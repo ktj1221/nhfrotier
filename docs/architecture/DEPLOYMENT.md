@@ -181,6 +181,21 @@ Nginx / Reverse Proxy
 - **해결**: Node 버전을 바꿨다면 `npm rebuild better-sqlite3`. Windows에서는 Visual Studio Build Tools(C++ 워크로드)가 필요하다.
 - **참고**: Next.js 번들러가 네이티브 모듈을 처리하지 못하므로 `next.config.ts`의 `serverExternalPackages`에 등록되어 있다. 이 설정을 지우면 빌드가 깨진다.
 
+### dev에 merge했는데 공유 링크에 변경이 안 보인다
+- **증상**: `mockup/app/proto/assets/`(Next.js)에 자산을 붙이고 dev에 merge했는데
+  `.../dev/mockup-site/design-assets.html` 은 그대로였다.
+- **원인**: **Pages로 화면이 보이는 것은 `mockup-site/`(정적 HTML)뿐이다.** `mockup/`은 Next.js
+  앱이라 저장소를 통째로 서빙해도 화면이 뜨지 않는다. 목업 표면이 두 벌인데 한쪽만 고친 것이다.
+- **해결**: 공유 링크에 보여야 하는 변경은 `mockup-site/`에도 반영한다. → `mockup-site/README.md`
+
+### 로컬에서는 보이는 이미지가 Pages에서 404
+- **증상**: 정적 목업의 이미지가 내 브라우저에서는 멀쩡한데 공유 링크에서는 깨진다.
+- **원인**: 그 이미지가 `.gitignore` 대상이라 **내 PC에만 있고 저장소에 없다.** 로컬 확인으로는
+  절대 발견되지 않는다. 절대경로(`/assets/...`)를 쓴 경우도 같은 증상이다 — Pages는 `/nhfrotier/` 하위다.
+- **해결**: `node scripts/check-pages-assets.mjs` 로 검사한다. `mockup-site/`를 건드린 커밋에서는
+  pre-commit 훅이 자동으로 돌려 커밋을 막는다. 훅이 안 돌면 `node scripts/install-hooks.mjs`.
+  공개해도 되는 자산이면 `.gitignore`에 예외를 뚫고, 아니면 이미지를 빼고 CSS/SVG 대체본을 그린다.
+
 <!-- 새 트러블슈팅은 아래 형식으로 추가:
 
 ### [증상 한 줄]

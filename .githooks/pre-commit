@@ -1,5 +1,6 @@
 #!/bin/sh
-# 문서가 바뀐 커밋에서만 프로젝트문서.html 을 다시 만들고 같은 커밋에 포함한다.
+# 1) mockup-site/ 가 바뀐 커밋에서 공개 페이지가 깨질 참조를 검사한다.
+# 2) 문서가 바뀐 커밋에서만 프로젝트문서.html 을 다시 만들고 같은 커밋에 포함한다.
 # 활성화: node scripts/install-hooks.mjs
 # 건너뛰기: SKIP_DOCS_BUILD=1 git commit ...
 set -eu
@@ -7,7 +8,23 @@ set -eu
 [ "${SKIP_DOCS_BUILD:-}" = "1" ] && exit 0
 
 # -z 로 읽어야 한글 경로가 "\352\260..." 로 quote되지 않는다.
-CHANGED=$(git diff --cached --name-only -z --diff-filter=ACMR | tr '\0' '\n' |
+STAGED=$(git diff --cached --name-only -z --diff-filter=ACMR | tr '\0' '\n')
+
+# ── 공개 정적 목업 검사 ──
+# mockup-site/ 는 GitHub Pages 로 그대로 서빙된다. 여기서 참조하는 이미지가
+# .gitignore 대상이면 내 브라우저에서만 보이고 팀원에게는 404 가 된다.
+SITE_CHANGED=$(printf '%s\n' "$STAGED" | grep -E '^mockup-site/' || true)
+
+if [ -n "$SITE_CHANGED" ] && command -v node >/dev/null 2>&1; then
+  if ! node scripts/check-pages-assets.mjs; then
+    echo "pre-commit: 공개 페이지에서 깨질 참조가 있어 커밋을 중단합니다." >&2
+    echo "            mockup-site/README.md 의 '왜 깨지나' 절을 볼 것." >&2
+    exit 1
+  fi
+fi
+
+# ── 문서 페이지 재생성 ──
+CHANGED=$(printf '%s\n' "$STAGED" |
   grep -E '^(개발문서/|docs/|scripts/|design-system/tokens/|MockupGen_기능명세서\.md$)' || true)
 
 [ -z "$CHANGED" ] && exit 0

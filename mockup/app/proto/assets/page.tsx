@@ -73,7 +73,7 @@ export default function ProtoAssetsPage() {
         )}
 
         <SectionHeader title="로고 · 워드마크" count={String(LOGO_ASSETS.length)} />
-        <div className="flex gap-3.5 mb-8">
+        <div className="flex gap-3.5 mb-8 overflow-x-auto pb-1">
           {LOGO_ASSETS.map((asset) => (
             <AssetCard key={asset.id} asset={asset} />
           ))}
@@ -81,14 +81,14 @@ export default function ProtoAssetsPage() {
         </div>
 
         <SectionHeader title="컴포넌트" count="23" />
-        <div className="flex gap-3.5 mb-8">
+        <div className="flex gap-3.5 mb-8 overflow-x-auto pb-1">
           {COMPONENT_ASSETS.map((asset) => (
             <AssetCard key={asset.id} asset={asset} />
           ))}
         </div>
 
         <SectionHeader title="화면 템플릿" count={String(SCREEN_ASSETS.length)} />
-        <div className="flex gap-3.5 mb-8">
+        <div className="flex gap-3.5 mb-8 overflow-x-auto pb-1">
           {SCREEN_ASSETS.map((asset) => (
             <AssetCard key={asset.id} asset={asset} tall />
           ))}

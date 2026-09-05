@@ -21,6 +21,14 @@ design-system/uploads/
 mockup/public/assets/nh/*
 !mockup/public/assets/nh/README.md
 
+# 예외 — 농협이 대외 공개하는 공식 CI 자산은 노출돼도 무방하므로 커밋한다.
+# mockup-site/design-assets.html(공개 정적 미러)이 이 경로를 상대참조로 그대로 쓴다.
+!mockup/public/assets/nh/logo/
+mockup/public/assets/nh/logo/*
+!mockup/public/assets/nh/logo/nh-symbol.jpg
+!mockup/public/assets/nh/logo/nh-wordmark.jpg
+!mockup/public/assets/nh/ci/
+
 # 외부 서비스 UI 참고 캡처(Genspark 등). 화면 안에 사내 북마크·계정명이 함께 찍혀 있고,
 # 위와 같은 이유로 저장소 루트가 GitHub Pages 로 공개 서빙되므로 커밋하지 않는다.
 reference/ui/**

@@ -42,6 +42,11 @@
 `GET /api/v1/projects/{projectId}/reviews`
 `POST /api/v1/reviews/{reviewId}/decisions`
 
+### Responsibility Review (FR-14)
+`POST /api/v1/versions/{versionId}/responsibility-review`  — 검토 실행. 이전 검토를 덮어쓰지 않고 새 이력을 만든다
+`GET /api/v1/versions/{versionId}/responsibility-review`  — 최신 검토 + 지적 목록
+`PATCH /api/v1/responsibility-findings/{findingId}`  — body의 `decision`은 `ACCEPTED` / `DEFERRED` / `REJECTED` / `COMPLIANCE_REQUESTED`
+
 ### Version
 `GET /api/v1/projects/{projectId}/versions`
 `GET /api/v1/versions/{versionId}`
@@ -70,6 +75,8 @@ comments
 review_summaries
 review_items
 review_decisions
+responsibility_reviews
+responsibility_findings
 versions
 version_files
 history_events
@@ -83,6 +90,7 @@ USER 1:N PROJECT_MEMBER N:1 PROJECT
 PROJECT 1:N FILE
 PROJECT 1:N AI_JOB
 PROJECT 1:N COMMENT
+VERSION 1:N RESPONSIBILITY_REVIEW 1:N RESPONSIBILITY_FINDING
 PROJECT 1:N VERSION
 PROJECT 1:N HISTORY_EVENT
 VERSION 1:N VERSION_FILE

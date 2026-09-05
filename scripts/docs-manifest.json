@@ -176,6 +176,11 @@
           "path": "개발문서/기능명세/FR-13_브랜드시안제작.md",
           "title": "FR-13 · 브랜드 시안 제작",
           "note": "카드 · 홍보물 컨셉 시안 · 3안 비교"
+        },
+        {
+          "path": "개발문서/기능명세/FR-14_책임성검토.md",
+          "title": "FR-14 · 책임성 검토",
+          "note": "표현 · 소비자보호 · 다크패턴 · 접근성"
         }
       ]
     },
@@ -208,6 +213,11 @@
           "path": "docs/guidelines/SECURITY.md",
           "title": "보안 규칙",
           "note": "ISMS-P 기반 시큐어 개발"
+        },
+        {
+          "path": "docs/guidelines/RESPONSIBLE_DESIGN.md",
+          "title": "책임성 설계 규칙",
+          "note": "RR 규칙 정본 · 판정 아닌 자문"
         }
       ]
     }

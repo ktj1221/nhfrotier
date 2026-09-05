@@ -5,17 +5,31 @@ import { useParams, useRouter } from 'next/navigation';
 import { Header } from '@/app/components/Header';
 import { Avatar } from '@/app/components/Avatar';
 import { useUser } from '@/app/contexts/UserContext';
+import { ReviewPanel, type Finding, type ReviewMeta, type Decision } from '@/app/components/ReviewPanel';
+import DesignCanvas, { type CanvasScreen } from '@/app/components/canvas/DesignCanvas';
+import { ElementPanel } from '@/app/components/canvas/ElementPanel';
+import type { CanvasMode, ElementMeta } from '@/lib/canvas/protocol';
 
 interface Project { id: string; name: string; description: string | null; created_at: string; }
 interface RefScreen { id: string; name: string; mime_type: string; }
 interface MockupSummary { id: string; version: number; proposal_content: string; description: string | null; created_at: string; }
-interface MockupDetail extends MockupSummary { html_content: string; }
+/** GET /api/mockups/[id]가 내려주는 화면 행. legacy 목업도 여기 1행으로 정규화되어 온다. */
+interface ScreenRow {
+  id: string;
+  screen_key: string;
+  name: string;
+  sort_order: number;
+  html_content: string | null;
+  status: CanvasScreen['status'];
+  error_message: string | null;
+}
+interface MockupDetail extends MockupSummary { html_content: string; screens: ScreenRow[]; }
 interface Member { id: string; user_id: string; user_name: string; user_color: string; user_role: string; role: string; }
 interface Comment { id: string; user_id: string; user_name: string; user_color: string; content: string; created_at: string; }
 interface ChatMsg { id: string; user_id: string; user_name: string; user_color: string; content: string; created_at: string; }
 
 type LeftTab = 'generate' | 'history' | 'members' | 'refs';
-type RightTab = 'comments' | 'chat';
+type RightTab = 'element' | 'comments' | 'review' | 'chat';
 
 export default function ProjectPage() {
   const { id } = useParams<{ id: string }>();
@@ -35,6 +49,11 @@ export default function ProjectPage() {
   const [rightTab, setRightTab] = useState<RightTab>('comments');
   const [rightOpen, setRightOpen] = useState(true);
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
+
+  // Canvas
+  const [canvasMode, setCanvasMode] = useState<CanvasMode>('select');
+  const [activeScreenKey, setActiveScreenKey] = useState('');
+  const [selectedElement, setSelectedElement] = useState<ElementMeta | null>(null);
 
   // Generate
   const [proposalContent, setProposalContent] = useState('');
@@ -56,6 +75,12 @@ export default function ProjectPage() {
   const [comments, setComments] = useState<Comment[]>([]);
   const [commentText, setCommentText] = useState('');
   const [postingComment, setPostingComment] = useState(false);
+
+  // Responsibility review (FR-14)
+  const [review, setReview] = useState<ReviewMeta | null>(null);
+  const [findings, setFindings] = useState<Finding[]>([]);
+  const [reviewing, setReviewing] = useState(false);
+  const [decidingId, setDecidingId] = useState<string | null>(null);
 
   // Chat
   const [chatMessages, setChatMessages] = useState<ChatMsg[]>([]);
@@ -84,6 +109,34 @@ export default function ProjectPage() {
   const fetchComments = useCallback(async (mockupId: string) => {
     const res = await fetch(`/api/mockups/${mockupId}/comments`);
     if (res.ok) setComments(await res.json());
+  }, []);
+
+  const fetchReview = useCallback(async (mockupId: string) => {
+    const res = await fetch(`/api/mockups/${mockupId}/responsibility-review`);
+    if (!res.ok) return;
+    const data = await res.json();
+    setReview(data.review);
+    setFindings(data.findings);
+  }, []);
+
+  const runReview = useCallback(async (mockupId: string) => {
+    setReviewing(true);
+    try {
+      const res = await fetch(`/api/mockups/${mockupId}/responsibility-review`, { method: 'POST' });
+      const data = await res.json();
+      if (res.ok) {
+        setReview(data.review);
+        setFindings(data.findings);
+      } else {
+        setReview({ id: '', status: 'FAILED', created_at: new Date().toISOString() });
+        setFindings([]);
+      }
+    } catch {
+      setReview({ id: '', status: 'FAILED', created_at: new Date().toISOString() });
+      setFindings([]);
+    } finally {
+      setReviewing(false);
+    }
   }, []);
 
   const fetchChat = useCallback(async (initial = false) => {
@@ -121,9 +174,54 @@ export default function ProjectPage() {
   async function loadMockupDetail(mockupId: string) {
     const res = await fetch(`/api/mockups/${mockupId}`);
     if (res.ok) {
-      const data = await res.json();
+      const data: MockupDetail = await res.json();
       setSelectedMockup(data);
+      setActiveScreenKey(data.screens[0]?.screen_key ?? '');
+      setSelectedElement(null);
+      setReview(null);
+      setFindings([]);
       fetchComments(data.id);
+      fetchReview(data.id);
+    }
+  }
+
+  /** 요소를 고르면 속성 패널을 바로 보여준다. 두 번 클릭하게 만들지 않는다. */
+  const handleSelectElement = useCallback((_nhId: string | null, meta: ElementMeta | null) => {
+    setSelectedElement(meta);
+    if (meta) {
+      setRightOpen(true);
+      setRightTab('element');
+    }
+  }, []);
+
+  const handleNavigate = useCallback((screenKey: string) => {
+    setActiveScreenKey(screenKey);
+    setSelectedElement(null);
+  }, []);
+
+  const canvasScreens: CanvasScreen[] = (selectedMockup?.screens ?? []).map((s) => ({
+    screenKey: s.screen_key,
+    name: s.name,
+    html: s.html_content,
+    status: s.status,
+    errorMessage: s.error_message,
+  }));
+
+  async function handleDecide(findingId: string, decision: Decision) {
+    if (!currentUser) return;
+    setDecidingId(findingId);
+    try {
+      const res = await fetch(`/api/findings/${findingId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: currentUser.id, decision }),
+      });
+      if (res.ok) {
+        const updated: Finding = await res.json();
+        setFindings((prev) => prev.map((f) => (f.id === updated.id ? updated : f)));
+      }
+    } finally {
+      setDecidingId(null);
     }
   }
 
@@ -140,12 +238,14 @@ export default function ProjectPage() {
       });
       const data = await res.json();
       if (!res.ok) { setGenerateError(data.error || '생성 실패'); return; }
-      setSelectedMockup({ id: data.id, version: data.version, proposal_content: proposalContent, html_content: data.htmlContent, description: description || null, created_at: new Date().toISOString() });
+      // 직접 조립하지 않고 다시 읽는다. 화면 목록(screens)은 서버가 정제하며 만들기 때문이다.
+      await loadMockupDetail(data.id);
       setProposalContent('');
       setDescription('');
       fetchProject();
       setLeftTab('history');
-      setComments([]);
+      // 1차 방지(생성 가드레일)를 통과한 결과를 2차로 검토한다
+      runReview(data.id);
     } catch { setGenerateError('네트워크 오류가 발생했습니다.'); }
     finally { setGenerating(false); }
   }
@@ -222,6 +322,7 @@ export default function ProjectPage() {
   }
 
   const availableToAdd = allUsers.filter((u) => !members.some((m) => m.user_id === u.id));
+  const hasHighSeverity = findings.some((f) => f.severity === 'HIGH' && !f.decision);
 
   if (loading) {
     return (
@@ -481,6 +582,18 @@ export default function ProjectPage() {
                 {selectedMockup.description && <span className="text-sm font-medium text-slate-700">{selectedMockup.description}</span>}
                 <div className="ml-auto flex items-center gap-2">
                   <div className="flex items-center gap-1 bg-slate-100 rounded-lg p-1">
+                    {(['select', 'preview'] as const).map((m) => (
+                      <button
+                        key={m}
+                        onClick={() => { setCanvasMode(m); if (m === 'preview') setSelectedElement(null); }}
+                        title={m === 'select' ? '요소를 눌러 고릅니다' : '목업을 실제처럼 눌러봅니다'}
+                        className={`px-3 py-1 text-xs rounded-md transition-colors ${canvasMode === m ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'}`}
+                      >
+                        {m === 'select' ? '선택' : '미리보기'}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-1 bg-slate-100 rounded-lg p-1">
                     {(['desktop', 'mobile'] as const).map((m) => (
                       <button
                         key={m}
@@ -515,19 +628,34 @@ export default function ProjectPage() {
                   </button>
                 </div>
               </div>
-              <div className="flex-1 overflow-auto flex items-start justify-center p-6">
-                <div
-                  className={`bg-white shadow-xl rounded-lg overflow-hidden transition-all duration-300 ${viewMode === 'mobile' ? 'w-[390px]' : 'w-full max-w-5xl'}`}
-                  style={{ minHeight: '600px' }}
-                >
-                  <iframe
-                    srcDoc={selectedMockup.html_content}
-                    className="w-full border-0"
-                    style={{ height: viewMode === 'mobile' ? '844px' : '800px' }}
-                    title={`목업 v${selectedMockup.version}`}
-                    sandbox="allow-same-origin"
-                  />
+              {canvasScreens.length > 1 && (
+                <div className="bg-white border-b border-slate-200 px-4 py-2 flex items-center gap-2 overflow-x-auto shrink-0">
+                  {canvasScreens.map((s, i) => (
+                    <button
+                      key={s.screenKey}
+                      onClick={() => handleNavigate(s.screenKey)}
+                      className={`shrink-0 px-3 py-1.5 text-xs rounded-lg border transition-colors ${activeScreenKey === s.screenKey ? 'border-indigo-600 bg-indigo-50 text-indigo-700 font-medium' : 'border-slate-200 text-slate-600 hover:bg-slate-50'}`}
+                    >
+                      {i + 1}. {s.name}
+                      {s.status !== 'ready' && (
+                        <span className="ml-1.5 text-[10px] text-slate-400">
+                          {s.status === 'failed' ? '실패' : s.status === 'generating' ? '생성중' : '대기'}
+                        </span>
+                      )}
+                    </button>
+                  ))}
                 </div>
+              )}
+              <div className="flex-1 overflow-auto flex items-start justify-center p-6">
+                <DesignCanvas
+                  screens={canvasScreens}
+                  activeScreenKey={activeScreenKey}
+                  selectedNhId={selectedElement?.nhId ?? null}
+                  mode={canvasMode}
+                  viewMode={viewMode}
+                  onSelect={handleSelectElement}
+                  onNavigate={handleNavigate}
+                />
               </div>
             </>
           ) : (
@@ -553,16 +681,37 @@ export default function ProjectPage() {
           <aside className="w-80 bg-white border-l border-slate-200 flex flex-col overflow-hidden shrink-0">
             {/* Right Tab bar */}
             <div className="flex border-b border-slate-100 shrink-0">
-              {(['comments', 'chat'] as RightTab[]).map((tab) => (
+              {(['element', 'comments', 'review', 'chat'] as RightTab[]).map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setRightTab(tab)}
                   className={`flex-1 py-3 text-xs font-medium transition-colors ${rightTab === tab ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
                 >
-                  {tab === 'comments' ? `의견 ${selectedMockup ? `(${comments.length})` : ''}` : '채팅'}
+                  {tab === 'element' && (
+                    <span className="inline-flex items-center gap-1">
+                      속성
+                      {selectedElement && <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />}
+                    </span>
+                  )}
+                  {tab === 'comments' && `의견 ${selectedMockup ? `(${comments.length})` : ''}`}
+                  {tab === 'review' && (
+                    <span className="inline-flex items-center gap-1">
+                      AI 검토 {selectedMockup && !reviewing ? `(${findings.length})` : ''}
+                      {reviewing && <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />}
+                      {!reviewing && hasHighSeverity && <span className="w-1.5 h-1.5 rounded-full bg-red-500" />}
+                    </span>
+                  )}
+                  {tab === 'chat' && '채팅'}
                 </button>
               ))}
             </div>
+
+            {/* ── ELEMENT ── */}
+            {rightTab === 'element' && (
+              <div className="flex-1 overflow-y-auto">
+                <ElementPanel meta={selectedElement} />
+              </div>
+            )}
 
             {/* ── COMMENTS ── */}
             {rightTab === 'comments' && (
@@ -629,6 +778,20 @@ export default function ProjectPage() {
                   </>
                 )}
               </div>
+            )}
+
+            {/* ── AI RESPONSIBILITY REVIEW (FR-14) ── */}
+            {rightTab === 'review' && (
+              <ReviewPanel
+                hasMockup={!!selectedMockup}
+                review={review}
+                findings={findings}
+                reviewing={reviewing}
+                decidingId={decidingId}
+                canDecide={!!currentUser}
+                onRun={() => selectedMockup && runReview(selectedMockup.id)}
+                onDecide={handleDecide}
+              />
             )}
 
             {/* ── CHAT ── */}
